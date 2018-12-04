@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game Save Manager", "Game Save Manager\Game Save Manager.csproj", "{F108AC33-0B43-4EFB-9BC3-DDF2B7FE4CDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Program Codes", "Program Codes\Program Codes.csproj", "{DFABA398-3E0C-4674-AE2B-BC64D04F7995}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unit Tests", "UnitTestProject1\Unit Tests.csproj", "{D78DC445-5BF9-4B63-96DE-871684C9F08F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{F108AC33-0B43-4EFB-9BC3-DDF2B7FE4CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F108AC33-0B43-4EFB-9BC3-DDF2B7FE4CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F108AC33-0B43-4EFB-9BC3-DDF2B7FE4CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFABA398-3E0C-4674-AE2B-BC64D04F7995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFABA398-3E0C-4674-AE2B-BC64D04F7995}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFABA398-3E0C-4674-AE2B-BC64D04F7995}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFABA398-3E0C-4674-AE2B-BC64D04F7995}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D78DC445-5BF9-4B63-96DE-871684C9F08F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D78DC445-5BF9-4B63-96DE-871684C9F08F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D78DC445-5BF9-4B63-96DE-871684C9F08F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D78DC445-5BF9-4B63-96DE-871684C9F08F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Game_Save_Manager
+namespace GameSaveManager
 {
-    public partial class Form1 : Form
+    public partial class DisplayScreen : Form
     {
-        public Form1()
+        public DisplayScreen()
         {
             InitializeComponent();
         }
