@@ -1,0 +1,1340 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using ProgramCodes;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Collections;
+
+namespace Game_Save_Manager_Console_App
+{
+    /// <summary>
+    /// Represents an alignment for the text
+    /// </summary>
+    public enum Alignment { Left, Right, Centre };
+
+    /// <summary>
+    /// Represents a padding set with top, left, right and bottom padding
+    /// </summary>
+    public class Padding
+    {
+        /// <summary>Gets or sets the top padding</summary>
+        public int Top { get; set; }
+        /// <summary>Gets or sets the left padding</summary>
+        public int Left { get; set; }
+        /// <summary>Gets or sets the right padding</summary>
+        public int Right { get; set; }
+        /// <summary>Gets or sets the bottom padding</summary>
+        public int Bottom { get; set; }
+
+        /// <summary>
+        /// Sets the padding with the default padding
+        /// </summary>
+        public Padding()
+        {
+            SetPadding(0, 4, 4, 0);
+        }
+
+        /// <summary>
+        /// Creates a padding class with one value for both sets of padding
+        /// </summary>
+        /// <param name="all">The values for all padding</param>
+        public Padding(int all)
+        {
+            SetPadding(all, all, all, all);
+        }
+
+        /// <summary>
+        /// Creates a padding class with one value for both sets of padding
+        /// </summary>
+        /// <param name="topAndBottom">The values for the top and bottom padding</param>
+        /// <param name="sides">The value for both sets of padding</param>
+        public Padding(int topAndBottom, int sides)
+        {
+            SetPadding(topAndBottom, sides, sides, topAndBottom);
+        }
+
+        /// <summary>
+        /// Creates a padding class with values for the top, bottom and side padding
+        /// </summary>
+        /// <param name="top">The top padding</param>
+        /// <param name="sides">The left and right padding</param>
+        /// <param name="bottom">The bottom padding</param>
+        public Padding(int top, int sides, int bottom)
+        {
+            SetPadding(top, sides, sides, bottom);
+        }
+
+        /// <summary>
+        /// Creates a padding class with values for the left and right padding
+        /// </summary>
+        /// <param name="top">The top padding</param>
+        /// <param name="left">The left padding</param>
+        /// <param name="right">The right padding</param>
+        /// <param name="bottom">The bottom padding</param>
+        public Padding(int top, int left, int right, int bottom)
+        {
+            SetPadding(top, left, right, bottom);
+        }
+
+        private void SetPadding(int top, int left, int right, int bottom)
+        {
+            Top = top;
+            Left = left;
+            Right = right;
+            Bottom = bottom;
+        }
+
+        /// <summary>
+        /// Fixes the padding values, resetting them to zero if they are below this value
+        /// </summary>
+        public void FixPadding()
+        {
+            if (Top < 0)
+            {
+                Top = 0;
+            }
+            if (Left < 0)
+            {
+                Left = 4;
+            }
+            if (Right < 0)
+            {
+                Right = 4;
+            }
+            if (Bottom < 0)
+            {
+                Bottom = 0;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Represents a location with X and Y co-ordinates
+    /// </summary>
+    public class Location
+    {
+        /// <summary>Gets or sets the X co-ordinate</summary>
+        public int X { get; set; }
+
+        /// <summary>Gets or sets the Y co-ordinate</summary>
+        public int Y { get; set; }
+
+        /// <summary>Sets the location with the cursor's co-ordinates</summary>
+        public Location()
+        {
+            X = Console.CursorLeft;
+            Y = Console.CursorTop;
+        }
+
+        /// <summary>Sets the location with co-ordinates</summary>
+        /// <param name="x">The X co-ordinate</param>
+        /// <param name="y">The Y co-ordinate</param>
+        public Location(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+    }
+
+    /// <summary>
+    /// Represents a set of borders with specific 
+    /// </summary>
+    public class Borders
+    {
+        /// <summary>Gets or sets whether the top border is enabled</summary>
+        public bool TopEnabled { get; set; } = false;
+        /// <summary>Gets or sets whether the left border is enabled</summary>
+        public bool LeftEnabled { get; set; } = false;
+        /// <summary>Gets or sets whether the right border is enabled</summary>
+        public bool RightEnabled { get; set; } = false;
+        /// <summary>Gets or sets whether the bottom border is enabled</summary>
+        public bool BottomEnabled { get; set; } = false;
+
+        /// <summary>Gets or sets the character used for the top border</summary>
+        public string TopStyle { get; set; } = "-";
+        /// <summary>Gets or sets the character used for the left border</summary>
+        public string LeftStyle { get; set; } = "|";
+        /// <summary>Gets or sets the character used for the right border</summary>
+        public string RightStyle { get; set; } = "|";
+        /// <summary>Gets or sets the character used for the bottom border</summary>
+        public string BottomStyle { get; set; } = "-";
+
+        /// <summary>
+        /// Creates the borders with the default values
+        /// </summary>
+        public Borders()
+        {
+
+        }
+
+        /// <summary>
+        /// Creates the border style with all enabled/disabled
+        /// </summary>
+        /// <param name="allEnabled">Whether the borders are all enabled (setting to false keeps them disabled)</param>
+        public Borders(bool allEnabled)
+        {
+            if (allEnabled)
+            {
+                TopEnabled = true;
+                LeftEnabled = true;
+                RightEnabled = true;
+                BottomEnabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Returns if any borders are enabled
+        /// </summary>
+        /// <returns>Whether any borders are enabled</returns>
+        public bool AnyEnabled()
+        {
+            return TopEnabled || LeftEnabled || RightEnabled || BottomEnabled;
+        }
+    }
+
+    /// <summary>
+    /// Represents a minimum justification length that can either be a percentage or absolute value
+    /// </summary>
+    public class MinimumJustification
+    {
+        /// <summary>Gets or sets whether the value is a percentage or absolute value</summary>
+        public bool IsPercentage { get; set; }
+        /// <summary>Gets or sets the total value</summary>
+        public int Value { get; set; }
+
+        /// <summary>
+        /// Initialises an instance of the MinimumJustification type
+        /// </summary>
+        /// <param name="value">The value of the justification value</param>
+        /// <param name="isPercentage">Whether the value given is a percentage</param>
+        public MinimumJustification(int value, bool isPercentage)
+        {
+            IsPercentage = isPercentage;
+            Value = value;
+        }
+
+        /// <summary>
+        /// Gets the absolute value of the justification size depending
+        /// </summary>
+        /// <param name="availableWidth">The available width</param>
+        /// <returns></returns>
+        public int GetAbsoluteValue(int availableWidth)
+        {
+            if (IsPercentage)
+            {
+                return Value * availableWidth / 100;
+            }
+            return Value;
+        }
+    }
+
+    /// <summary>
+    /// Represents a set of settings for the FormattedWrite method in ConsoleUtils
+    /// </summary>
+    public class FormattedWriteSettings
+    {
+        /// <summary>Gets or sets whether a new line will be created (cursor will move to next line at the end)</summary>
+        public bool NewLine { get; set; } = true;
+
+        /// <summary>Gets or sets the padding for the text</summary>
+        public Padding InnerPadding { get; set; } = new Padding();
+
+        /// <summary>Gets or sets whether to wrap the words at all</summary>
+        public bool WrapWords { get; set; } = true;
+
+        /// <summary>Gets or sets how the text is aligned</summary>
+        public Alignment TextAlignment { get; set; } = Alignment.Left;
+        /// <summary>Gets or sets whether the text is justified</summary>
+        public bool Justified { get; set; } = false;
+        /// <summary>Gets or sets the minimum amount to justify by</summary>
+        public MinimumJustification MinToJustify { get; set; } = new MinimumJustification(70, true);
+
+        /// <summary>Gets or sets the minimum width of the text. If it is justified, it will always justify to this size. Otherwise it will merely always overwrite to this size</summary>
+        public int MinimumWidth { get; set; } = 0;
+        /// <summary>Gets or sets the maximum width that the text can take up</summary>
+        public int MaximumWidth { get; set; } = 0;
+        /// <summary>Gets or sets the maximum height that the text can take up. WARNING: text will be cut if it becomes greater than this value (an ellipsis will be used at the end of the last line)</summary>
+        public int MaximumHeight { get; set; } = -1;
+
+        /// <summary>Gets or sets whether to write the text character by character</summary>
+        public bool SlowWrite { get; set; } = false;
+        /// <summary>Gets or sets the amount of time between each letter being created if SlowWrite is enabled</summary>
+        public int ThreadGap { get; set; } = 50;
+
+        /// <summary>Gets or sets whether the left position of the cursor becomes the default position for the paragraph rather than text moving to the next line (good for looks similar to a GUI)</summary>
+        public bool KeepIndent { get; set; } = true;
+        /// <summary>Gets or sets the starting write location of the text</summary>
+        public Location Location { get; set; } = new Location();
+        /// <summary>Gets or sets whether to reset the cursor position to the original location after writing</summary>
+        public bool ResetCursorPosition { get; set; } = false;
+
+        /// <summary>Gets or sets whether to show the cursor as the text is being written (more for if SlowWrite is enabled)</summary>
+        public bool ShowCursor { get; set; } = false;
+
+        /// <summary>Gets or sets the borders for the text</summary>
+        public Borders BorderSettings { get; set; } = new Borders();
+
+        /// <summary>
+        /// Initialises a <c>FormattedWriteSettings</c> instance with the default values
+        /// </summary>
+        public FormattedWriteSettings()
+        {
+
+        }
+
+        /// <summary>
+        /// Initialises a <c>FormattedWriteSettings</c> instance with the parent values
+        /// </summary>
+        /// <param name="parentSettings">The parent write settings to extend from</param>
+        public FormattedWriteSettings(FormattedWriteSettings parentSettings)
+        {
+            NewLine = parentSettings.NewLine;
+
+            InnerPadding = new Padding
+            {
+                Top = parentSettings.InnerPadding.Top,
+                Left = parentSettings.InnerPadding.Left,
+                Right = parentSettings.InnerPadding.Right,
+                Bottom = parentSettings.InnerPadding.Bottom
+            };
+
+            WrapWords = parentSettings.WrapWords;
+
+            TextAlignment = parentSettings.TextAlignment;
+            Justified = parentSettings.Justified;
+            MinToJustify = new MinimumJustification(parentSettings.MinToJustify.Value, parentSettings.MinToJustify.IsPercentage);
+
+            MinimumWidth = parentSettings.MinimumWidth;
+            MaximumWidth = parentSettings.MaximumWidth;
+            MaximumHeight = parentSettings.MaximumHeight;
+
+            SlowWrite = parentSettings.SlowWrite;
+            ThreadGap = parentSettings.ThreadGap;
+
+            KeepIndent = parentSettings.KeepIndent;
+            Location = new Location(parentSettings.Location.X, parentSettings.Location.Y);
+
+            ResetCursorPosition = parentSettings.ResetCursorPosition;
+            ShowCursor = parentSettings.ShowCursor;
+
+            BorderSettings = new Borders
+            {
+                TopEnabled = parentSettings.BorderSettings.TopEnabled,
+                LeftEnabled = parentSettings.BorderSettings.LeftEnabled,
+                RightEnabled = parentSettings.BorderSettings.RightEnabled,
+                BottomEnabled = parentSettings.BorderSettings.BottomEnabled,
+
+                TopStyle = parentSettings.BorderSettings.TopStyle,
+                LeftStyle = parentSettings.BorderSettings.LeftStyle,
+                RightStyle = parentSettings.BorderSettings.RightStyle,
+                BottomStyle = parentSettings.BorderSettings.BottomStyle,
+            };
+        }
+    }
+
+    /// <summary>
+    /// Contains code for classes specifically for modifying the console. Paired with <c>GeneralUtils</c>
+    /// </summary>
+    public static class ConsoleUtils
+    {
+        /// <summary>
+        /// Writes a blank line to the console
+        /// </summary>
+        /// <returns>The most right and down location of the text</returns>
+        public static Location FormattedWrite()
+        {
+            return FormattedWrite("", new FormattedWriteSettings());
+        }
+
+        /// <summary>
+        /// Writes to the console with the default settings
+        /// </summary>
+        /// <param name="text">The text that is to be written</param>
+        /// <returns>The most right and down location of the text</returns>
+        public static Location FormattedWrite(object text)
+        {
+            return FormattedWrite(text, new FormattedWriteSettings());
+        }
+
+        /// <summary>
+        /// Writes to the console with various settings
+        /// </summary>
+        /// <param name="text">The text that is to be written</param>
+        /// <param name="settings">The settings included for the FormattedWrite</param>
+        /// <returns>The most right and down location of the text</returns>
+        public static Location FormattedWrite(object text, FormattedWriteSettings settings)
+        {
+            // Sets variables
+            int availableWidth;
+            int spacesToAdd;
+            int word = 0;
+            int widestLine = 0;
+            bool cursorShownOriginally = Console.CursorVisible;
+            Console.CursorVisible = settings.ShowCursor;
+
+            // Checks and sets cursor positioning
+            Location returnPosition = new Location(0, 0);
+            int[] startingCursorPosition = new int[] { Console.CursorLeft, Console.CursorTop };
+
+            Console.SetCursorPosition(settings.Location.X, settings.Location.Y);
+
+            Location cursorPosition = new Location(Console.CursorLeft, Console.CursorTop);
+
+            int terminalWidth = Console.WindowWidth;
+            string currentLine;
+            string nextWord = "";
+            string rawText = Convert.ToString(text);
+            List<char> alignedList = new List<char>();
+            List<string> printingList = new List<string>();
+            List<string> alignmentTypes = new List<string> { "left", "right", "centre", "justified" };
+
+            // Checks if text is null
+            if (rawText == null)
+            {
+                rawText = "";
+            }
+
+            // Fixes padding
+            settings.InnerPadding.FixPadding();
+
+            // Sets minimum and maximum width
+            if (settings.MaximumWidth < settings.MinimumWidth)
+            {
+                settings.MaximumWidth = settings.MinimumWidth;
+            }
+
+            // Sets the available width to write
+            if (settings.MinimumWidth > 0 && settings.MinimumWidth > settings.InnerPadding.Left + settings.InnerPadding.Right && settings.MinimumWidth > terminalWidth)
+            {
+                availableWidth = settings.MinimumWidth;
+            }
+            else if (settings.MaximumWidth > 0 && settings.MaximumWidth > settings.InnerPadding.Left + settings.InnerPadding.Right)
+            {
+                availableWidth = settings.MaximumWidth - settings.InnerPadding.Left - settings.InnerPadding.Right;
+            }
+            else if (settings.MaximumWidth > 0 && terminalWidth - settings.InnerPadding.Left - settings.InnerPadding.Right > settings.MaximumWidth)
+            {
+                availableWidth = 1;
+            }
+            else
+            {
+                availableWidth = terminalWidth - settings.InnerPadding.Left - settings.InnerPadding.Right;
+            }
+
+            // Fixes padding if available width is too small
+            if (availableWidth < 1)
+            {
+                availableWidth = 1;
+                settings.InnerPadding.Left = (terminalWidth - 1) / 2;
+                settings.InnerPadding.Right = settings.InnerPadding.Left;
+            }
+
+            // Gets the list to print
+            string[] rawTextWords = rawText.Split(' ');
+            nextWord = rawTextWords[word];
+            while (word < rawTextWords.Length || nextWord != "")
+            {
+                currentLine = "";
+
+                // If word is bigger than the available width
+                if (nextWord.Length > availableWidth)
+                {
+                    int letterIndex = 0;
+                    while (letterIndex < nextWord.Length)
+                    {
+                        currentLine = "";
+                        while (letterIndex < nextWord.Length && currentLine.Length < availableWidth)
+                        {
+                            currentLine += nextWord[letterIndex];
+                            letterIndex++;
+                        }
+                        printingList.Add(currentLine);
+                    }
+                    word++;
+                    if (word < rawTextWords.Length)
+                    {
+                        nextWord = rawTextWords[word];
+                    }
+                    else
+                    {
+                        nextWord = "";
+                    }
+                }
+                else
+                {
+                    // Add words until no space left
+                    while (word < rawTextWords.Length && currentLine.Length + nextWord.Length <= availableWidth)
+                    {
+                        currentLine += nextWord + ' ';
+                        word++;
+                        if (word < rawTextWords.Length)
+                        {
+                            nextWord = rawTextWords[word];
+                        }
+
+                        else
+                        {
+                            nextWord = "";
+                        }
+                    }
+
+                    // Adds as much of the next word as possible if wrapWords is disabled
+                    if (!settings.WrapWords && currentLine.Length + nextWord.Length > availableWidth)
+                    {
+                        string decreasedWord = "";
+                        foreach (char character in nextWord)
+                        {
+                            if (currentLine.Length > availableWidth)
+                            {
+                                decreasedWord += character;
+                            }
+                            else
+                            {
+                                currentLine += character;
+                            }
+                        }
+                        nextWord = decreasedWord;
+                        currentLine += ' ';
+                    }
+
+                    // Remove trailing space
+                    if (currentLine != "")
+                    {
+                        currentLine = currentLine.Remove(currentLine.Length - 1);
+
+                        // Adds spaces if it has the justified alignment
+                        if (settings.Justified && currentLine.Length != availableWidth && (currentLine.Length > settings.MinToJustify.GetAbsoluteValue(availableWidth) || currentLine.Length < settings.MinimumWidth))
+                        {
+                            int numberOfWords = currentLine.Split(' ').Length - 1;
+                            int letterIndex = 0;
+                            if (currentLine.Length > settings.MinToJustify.GetAbsoluteValue(availableWidth))
+                            {
+                                spacesToAdd = availableWidth - currentLine.Length;
+                            }
+                            else
+                            {
+                                spacesToAdd = settings.MinimumWidth - currentLine.Length;
+                            }
+                            List<char> justificationList = currentLine.ToCharArray().ToList();
+
+                            // Adds spaces
+                            while (spacesToAdd > 0)
+                            {
+                                while (justificationList[letterIndex] != ' ') letterIndex++;
+                                for (int i = 0; i < (int)Math.Ceiling((double)spacesToAdd / numberOfWords); i++)
+                                {
+                                    justificationList.Insert(letterIndex, ' ');
+                                    letterIndex++;
+                                }
+                                spacesToAdd -= (int)Math.Ceiling((double)spacesToAdd / numberOfWords);
+                                numberOfWords--;
+                                letterIndex++;
+                            }
+
+                            // Sets currentLine
+                            currentLine = new string(justificationList.ToArray());
+                        }
+
+                        // Fixes any minimum width problems
+                        if (currentLine.Length < settings.MinimumWidth)
+                        {
+                            while (currentLine.Length < settings.MinimumWidth)
+                            {
+                                currentLine += ' ';
+                            }
+                        }
+                        printingList.Add(currentLine);
+                    }
+                }
+            }
+
+            // Gets the widest line
+            if (settings.TextAlignment == Alignment.Left)
+            {
+                foreach (string printingLine in printingList)
+                {
+                    if (printingLine.Length > widestLine)
+                    {
+                        widestLine = printingLine.Length;
+                    }
+                }
+
+            }
+            else
+            {
+                widestLine = availableWidth;
+            }
+
+            // If border and keepIndent is enabled, create the border
+            if (settings.BorderSettings.AnyEnabled() && settings.KeepIndent)
+            {
+                returnPosition = new Location(cursorPosition.X + widestLine + settings.InnerPadding.Left + settings.InnerPadding.Right, cursorPosition.Y + printingList.Count + settings.InnerPadding.Top + settings.InnerPadding.Bottom + 1);
+                if (settings.BorderSettings.LeftEnabled) returnPosition.X += settings.BorderSettings.LeftStyle.Length;
+                if (settings.BorderSettings.RightEnabled) returnPosition.X += settings.BorderSettings.RightStyle.Length;
+                if (settings.BorderSettings.TopEnabled) returnPosition.Y += settings.BorderSettings.TopStyle.Length;
+                if (settings.BorderSettings.BottomEnabled) returnPosition.Y += settings.BorderSettings.BottomStyle.Length;
+
+                CreateBox(new Location(cursorPosition.X, cursorPosition.Y), returnPosition, settings.BorderSettings);
+            }
+            cursorPosition.Y += settings.InnerPadding.Top;
+            if (settings.BorderSettings.TopEnabled) cursorPosition.Y += settings.BorderSettings.TopStyle.Length;
+            Console.SetCursorPosition(cursorPosition.X, cursorPosition.Y);
+
+            // Print the printing list
+            for (int x = 0; x < printingList.Count; x++)
+            {
+                // Add padding
+                Console.SetCursorPosition(Console.CursorLeft + settings.InnerPadding.Left, Console.CursorTop);
+                if (settings.BorderSettings.LeftEnabled)
+                {
+                    Console.CursorLeft += settings.BorderSettings.LeftStyle.Length;
+                }
+
+                // Moves the cursor to the correct position for alignment
+                if (settings.TextAlignment == Alignment.Right)
+                {
+                    Console.SetCursorPosition(Console.CursorLeft + availableWidth - printingList[x].Length, Console.CursorTop);
+                }
+                else if (settings.TextAlignment == Alignment.Centre)
+                {
+                    Console.SetCursorPosition(Console.CursorLeft + (availableWidth - printingList[x].Length) / 2, Console.CursorTop);
+                }
+
+                // Print text
+                if (settings.SlowWrite)
+                {
+                    for (int i = 0; i < printingList[x].Length; i++)
+                    {
+                        Console.Write(printingList[x][i]);
+                        if (Console.KeyAvailable)
+                        {
+                            settings.SlowWrite = false;
+                        }
+                        if (settings.SlowWrite)
+                        {
+                            Thread.Sleep(settings.ThreadGap);
+                        }
+                    }
+                    while (Console.KeyAvailable) Console.ReadKey(true);
+                }
+                else
+                {
+                    Console.Write(printingList[x]);
+                }
+
+                // Sets widest line for the return location
+                if (Console.CursorLeft > returnPosition.X)
+                {
+                    returnPosition.X = Console.CursorLeft;
+                }
+                if (Console.CursorTop > returnPosition.Y)
+                {
+                    returnPosition.Y = Console.CursorTop;
+                }
+
+                // Moves the cursor if it is not the last line or if newLine is enabled
+                if (settings.NewLine || x < printingList.Count - 1)
+                {
+                    if (settings.KeepIndent)
+                    {
+                        cursorPosition.Y++;
+                        Console.SetCursorPosition(cursorPosition.X, cursorPosition.Y);
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                    }
+                }
+            }
+
+            for (int x = 0; x < settings.InnerPadding.Bottom; x++)
+            {
+                if (settings.KeepIndent)
+                {
+                    cursorPosition.Y++;
+                    Console.SetCursorPosition(cursorPosition.X, cursorPosition.Y);
+                }
+                else
+                {
+                    Console.WriteLine();
+                }
+            }
+
+            if (settings.ResetCursorPosition)
+            {
+                Console.SetCursorPosition(startingCursorPosition[0], startingCursorPosition[1]);
+            }
+            Console.CursorVisible = cursorShownOriginally;
+            return returnPosition;
+        }
+
+        /// <summary>
+        /// Preps the screen by clearing the console and adding a header
+        /// </summary>
+        /// <param name="title">Title for the header</param>
+        /// <param name="lineIncluded">Whether the line for the header is included</param>
+        public static void PrepNewScreen(string title = "", bool lineIncluded = true)
+        {
+            Console.Clear();
+            Console.WriteLine();
+            FormattedWrite(title, new FormattedWriteSettings() { TextAlignment = Alignment.Centre, InnerPadding = new Padding(1, 0, 0, 0) });
+            if (lineIncluded)
+            {
+                FormattedWrite("".PadLeft(Console.WindowWidth, '_'), new FormattedWriteSettings() { InnerPadding = new Padding(0, 0, 0, 2) });
+            }
+        }
+
+        /// <summary>
+        /// Creates a menu with various menu options and default title
+        /// </summary>
+        /// <param name="menuOptions">The options presented by the menu</param>
+        public static void CreateMenu(ICollection menuOptions)
+        {
+            CreateMenu(menuOptions, "Menu:", new FormattedWriteSettings(), new FormattedWriteSettings());
+        }
+
+        /// <summary>
+        /// Creates a menu with various menu options and a custom title
+        /// </summary>
+        /// <param name="menuOptions">The options presented by the menu</param>
+        /// <param name="menuTitle">The menu title</param>
+        public static void CreateMenu(ICollection menuOptions, string menuTitle)
+        {
+            CreateMenu(menuOptions, menuTitle, new FormattedWriteSettings(), new FormattedWriteSettings());
+        }
+
+        /// <summary>
+        /// Creates a menu with various menu options, custom title and write settings
+        /// </summary>
+        /// <param name="menuOptions">The options presented by the menu</param>
+        /// <param name="menuTitle">The menu title</param>
+        /// <param name="writeSettings">Any extra write settings for the title and options</param>
+        public static void CreateMenu(ICollection menuOptions, string menuTitle, FormattedWriteSettings writeSettings)
+        {
+            CreateMenu(menuOptions, menuTitle, writeSettings, writeSettings);
+        }
+
+        /// <summary>
+        /// Creates a menu with various menu options, custom titles and separate write settings for the title and menu options
+        /// </summary>
+        /// <param name="menuOptions">The options presented by the menu</param>
+        /// <param name="menuTitle">The menu title</param>
+        /// <param name="menuWriteSettings">Any extra write settings for the title</param>
+        /// <param name="optionsWriteSettings">Any extra write settings for the options</param>
+        public static void CreateMenu(ICollection menuOptions, string menuTitle, FormattedWriteSettings menuWriteSettings, FormattedWriteSettings optionsWriteSettings)
+        {
+            int menuIndex = 1;
+            FormattedWrite(menuTitle, menuWriteSettings);
+            menuWriteSettings.Location.Y += 1;
+            foreach (object menuOption in menuOptions)
+            {
+                FormattedWrite(menuIndex + ". " + menuOption.ToString(), menuWriteSettings);
+                menuWriteSettings.Location.Y += 1;
+                menuIndex++;
+            }
+        }
+
+        /// <summary>
+        /// Clears a line completely
+        /// </summary>
+        /// <param name="line">The line where it is cleared</param>
+        public static void ClearLine(int line)
+        {
+            ClearLine(line, 0, Console.WindowWidth);
+        }
+
+        /// <summary>
+        /// Clears a line from a specific digit
+        /// </summary>
+        /// <param name="line">The line where it is cleared</param>
+        /// <param name="startingDigit">The digit to start clearing from</param>
+        public static void ClearLine(int line, int startingDigit)
+        {
+            ClearLine(line, startingDigit, Console.WindowWidth - startingDigit);
+        }
+
+        /// <summary>
+        /// Clears an area between certain values
+        /// </summary>
+        /// <param name="line">The line where it is cleared</param>
+        /// <param name="startingDigit">The digit to start clearing from</param>
+        /// <param name="count">The digit to finish upon</param>
+        public static void ClearLine(int line, int startingDigit, int count)
+        {
+            int currentLine = Console.CursorTop;
+            int currentDigit = Console.CursorLeft;
+
+            // Clears line between limits if there is anything to clear
+            Console.CursorVisible = false;
+            Console.SetCursorPosition(startingDigit, line);
+            Console.Write("".PadLeft(count));
+            Console.SetCursorPosition(currentDigit, currentLine);
+            Console.CursorVisible = true;
+        }
+
+        /// <summary>
+        /// Clears an area between certain values
+        /// </summary>
+        /// <param name="startingDigit">The digit to start clearing from</param>
+        /// <param name="count">The digit to finish upon</param>
+        /// <param name="line">The line where it is cleared</param>
+        /// <param name="finishingLine">The line to finish clearing on (inclusive)</param>
+        public static void ClearArea(Location startingLocation, Location finishingLocation)
+        {
+            int currentLine = Console.CursorTop;
+            int currentDigit = Console.CursorLeft;
+
+            // Clears line between limits if there is anything to clear
+            Console.CursorVisible = false;
+            if (finishingLocation.Y > startingLocation.Y)
+            {
+                for (int i = 0; i <= finishingLocation.Y - startingLocation.Y; i++)
+                {
+                    Console.SetCursorPosition(startingLocation.X, startingLocation.Y + i);
+                    Console.Write("".PadLeft(finishingLocation.X - startingLocation.X));
+                }
+            }
+            Console.SetCursorPosition(currentDigit, currentLine);
+            Console.CursorVisible = true;
+        }
+
+        /// <summary>
+        /// Creates a box using the default border styles
+        /// </summary>
+        /// <param name="topleft">The top left location of the box</param>
+        /// <param name="bottomRight">The bottom right location of the box (exclusive bounds)</param>
+        public static void CreateBox(Location topleft, Location bottomRight)
+        {
+            CreateBox(topleft, bottomRight, new Borders(true));
+        }
+
+        /// <summary>
+        /// Creates a box using the default border styles
+        /// </summary>
+        /// <param name="topLeft">The top left location of the box</param>
+        /// <param name="bottomRight">The bottom right location of the box (exclusive bounds)</param>
+        /// <param name="borders">The border style</param>
+        public static void CreateBox(Location topLeft, Location bottomRight, Borders borders)
+        {
+            Location originalCursorPosition = new Location();
+            Location customPosition = new Location();
+
+            // Create top border
+            if (borders.TopEnabled)
+            {
+                for (int i = 0; i < borders.TopStyle.Length; i++)
+                {
+                    Console.SetCursorPosition(topLeft.X, customPosition.Y);
+                    Console.Write("".PadLeft(bottomRight.X - topLeft.X, borders.TopStyle[i]));
+                    customPosition.Y++;
+                }
+            }
+
+            // Create middle borders
+            if (topLeft.X != bottomRight.X)
+            {
+                // Gets times to repeat, removing repeats depending on top/bottom borders
+                int repeats = bottomRight.Y - topLeft.Y - 1;
+                if (borders.TopEnabled)
+                {
+                    repeats -= borders.TopStyle.Length;
+                }
+                if (borders.BottomEnabled)
+                {
+                    repeats -= borders.BottomStyle.Length;
+                }
+
+                // Create borders
+                for (int i = 0; i < repeats; i++)
+                {
+                    if (borders.LeftEnabled)
+                    {
+                        Console.SetCursorPosition(topLeft.X, customPosition.Y);
+                        Console.Write(borders.LeftStyle);
+                    }
+                    if (borders.RightEnabled)
+                    {
+                        Console.SetCursorPosition(bottomRight.X - borders.RightStyle.Length, customPosition.Y);
+                        Console.Write(borders.RightStyle);
+                    }
+                    customPosition.Y++;
+                }
+            }
+
+            // Create bottom border
+            if (borders.BottomEnabled)
+            {
+                for (int i = 0; i < borders.BottomStyle.Length; i++)
+                {
+                    Console.SetCursorPosition(topLeft.X, customPosition.Y);
+                    Console.Write("".PadLeft(bottomRight.X - topLeft.X, borders.BottomStyle[i]));
+                    customPosition.Y++;
+                }
+            }
+
+            // Reset cursor position
+            Console.SetCursorPosition(originalCursorPosition.X, originalCursorPosition.Y);
+        }
+
+        /// <summary>
+        /// Gets an unchecked input with write settings
+        /// </summary>
+        /// <param name="prompt">The prompt that will be given</param>
+        /// <param name="maxLength">The maximum length of the user input</param>
+        /// <param name="maxHeight">The maximum amount of lines the user can use</param>
+        /// <param name="writeSettings">Any extra write settings</param>
+        /// <param name="clearInput">Whether to clear the input after it has been entered</param>
+        /// <returns>The user-inputted input</returns>
+        public static string FancyGetInput(string prompt, int maxLength, int maxHeight, FormattedWriteSettings writeSettings, bool clearInput = false)
+        {
+            string input;
+            Location inputPosition;
+
+            // Writes the question and gets the input position
+            FormattedWrite(prompt, writeSettings);
+            inputPosition = new Location();
+            
+            // Get the input
+            input = GetLimitedSizeInput(maxLength, maxHeight);
+
+            // Clears the input (if set to) and sets the cursor to the next line
+            if (clearInput)
+            {
+                ClearArea(inputPosition, new Location(inputPosition.X + maxLength, Console.CursorTop - 1));
+                Console.SetCursorPosition(inputPosition.X, inputPosition.Y + 1);
+            }
+            else
+            {
+                Console.SetCursorPosition(inputPosition.X, Console.CursorTop + 1);
+            }
+
+            return input;
+        }
+
+        /// <summary>
+        /// Gets an integer with limits from the user
+        /// </summary>
+        /// <param name="prompt">The prompt to get the integer</param>
+        /// <param name="errorPrompt">The error prompt that is given if input is not an integer</param>
+        /// <param name="limitsPrompt">The limits prompt if integer is outside limits</param>
+        /// <param name="minValue">The minimum value (inclusive)</param>
+        /// <param name="maxValue">The maximum value (inclusive)</param>
+        /// <param name="writeOptions">Any extra write options for the input text (and error prompts if these are not given)</param>
+        /// <param name="errorWriteOptions">The write options for the errors</param>
+        /// <param name="maxCharLength">The maximum length the the user input can take</param>
+        /// <param name="maxCharHeight">The maximum height that the user input can take</param>
+        /// <returns>The user-inputted integer</returns>
+        public static int FancyGetInteger(string prompt = "Input: ", string errorPrompt = "Input must be an integer", string limitsPrompt = "Default", int minValue = int.MinValue, int maxValue = int.MaxValue, FormattedWriteSettings writeOptions = null, FormattedWriteSettings errorWriteOptions = null, int maxCharLength = int.MaxValue, int maxCharHeight = 1)
+        {
+            int integer = -1;
+            bool invalidInput = true;
+            bool hadError = false;
+            Location finalCursorPosition = new Location(0, 0);
+            Location promptFinalPos = new Location(0, 0);
+            FormattedWriteSettings changedWriteOptions;
+
+            // Sets the limits prompt if it is the default and get largest prompt (to get the deletion)
+            if (limitsPrompt.ToLower() == "default")
+            {
+                limitsPrompt = "Integer must be " + minValue + " or greater and " + maxValue + " or less";
+            }
+
+            // Get prompt settings
+            if (writeOptions == null)
+            {
+                writeOptions = new FormattedWriteSettings();
+                writeOptions.NewLine = false;
+            }
+            if (errorWriteOptions == null)
+            {
+                changedWriteOptions = new FormattedWriteSettings(writeOptions);
+            }
+            else
+            {
+                changedWriteOptions = errorWriteOptions;
+            }
+            promptFinalPos.Y = writeOptions.Location.Y;
+
+            // Create initial prompt
+            Console.CursorTop = writeOptions.Location.Y;
+            promptFinalPos = FormattedWrite(prompt, writeOptions);
+            Location inputCursorPos = new Location();
+
+            // Set error prompt location settings
+            if (changedWriteOptions.Location.X == -1)
+            {
+                changedWriteOptions.Location.X = 0;
+            }
+            if (errorWriteOptions == null || changedWriteOptions.Location.Y == -1)
+            {
+                changedWriteOptions.Location.Y = promptFinalPos.Y + 2;
+            }
+            changedWriteOptions.ResetCursorPosition = true;
+
+            // Gets the integer
+            while (invalidInput)
+            {
+                try
+                {
+                    // Get the integer
+                    Console.SetCursorPosition(inputCursorPos.X, inputCursorPos.Y);
+                    integer = Convert.ToInt32(GetLimitedSizeInput(maxCharLength, maxCharHeight));
+
+                    // Clear the input
+                    ClearArea(inputCursorPos, new Location(inputCursorPos.X + maxCharLength, Console.CursorTop));
+
+                    // Check if integer is within values
+                    if (integer < minValue || integer > maxValue)
+                    {
+                        // Clear the space taken by the previous error
+                        if (hadError)
+                        {
+                            ClearArea(changedWriteOptions.Location, finalCursorPosition);
+                        }
+
+                        // Write the error
+                        finalCursorPosition = FormattedWrite(limitsPrompt, changedWriteOptions);
+                        hadError = true;
+                    }
+                    else
+                    {
+                        invalidInput = false;
+                    }
+                }
+                catch
+                {
+                    // Clear the input
+                    ClearArea(inputCursorPos, new Location(inputCursorPos.X + maxCharLength, Console.CursorTop));
+
+                    // Clear the space taken by the previous error
+                    if (hadError)
+                    {
+                        ClearArea(changedWriteOptions.Location, finalCursorPosition);
+                    }
+
+                    // Write the error
+                    finalCursorPosition = FormattedWrite(errorPrompt, changedWriteOptions);
+                    hadError = true;
+                }
+            }
+            // Remove any errors that were created
+            if (hadError)
+            {
+                ClearArea(changedWriteOptions.Location, finalCursorPosition);
+            }
+
+            // Reset cursor position
+            Console.CursorLeft = writeOptions.Location.X;
+
+            return integer;
+        }
+
+        /// <summary>
+        /// Gets an integer with limits from the user
+        /// </summary>
+        /// <param name="allowedInputs">The allowed values</param>
+        /// <param name="prompt">The prompt to get the integer</param>
+        /// <param name="errorPrompt">The error prompt that is given if input is not an integer</param>
+        /// <param name="isCaseSensitive">Whether the input is case-sensitive or not</param>
+        /// <param name="writeOptions">Any extra write options for the input text (and error prompts if these are not given)</param>
+        /// <param name="errorWriteOptions">The write options for the errors</param>
+        /// <param name="maxCharLength">The maximum length the the user input can take</param>
+        /// <param name="maxCharHeight">The maximum height that the user input can take</param>
+        /// <returns>The user-inputted integer</returns>
+        public static string FancyGetAllowedInput(IEnumerable<string> allowedInputs, string prompt = "Input: ", string errorPrompt = "Input is invalid", bool isCaseSensitive = true, FormattedWriteSettings writeOptions = null, FormattedWriteSettings errorWriteOptions = null, int maxCharLength = int.MaxValue, int maxCharHeight = 1, bool preventIncorrectText = false)
+        {
+            string integer = "";
+            bool invalidInput = true;
+            bool hadError = false;
+            Location finalCursorPosition = new Location(0, 0);
+            Location promptFinalPos = new Location(0, 0);
+            FormattedWriteSettings changedWriteOptions;
+
+            if (!isCaseSensitive)
+            {
+                allowedInputs = allowedInputs.Select(x => x.ToLower());
+            }
+
+            // Get prompt settings and set more error prompt settings
+            if (writeOptions == null)
+            {
+                writeOptions = new FormattedWriteSettings();
+            }
+            if (errorWriteOptions == null)
+            {
+                changedWriteOptions = new FormattedWriteSettings(writeOptions);
+            }
+            else
+            {
+                changedWriteOptions = errorWriteOptions;
+            }
+
+            // Create initial prompt and set more error prompt settings
+            Console.CursorTop = writeOptions.Location.Y;
+            promptFinalPos = FormattedWrite(prompt, writeOptions);
+            Location inputCursorPos = new Location();
+            if (changedWriteOptions.Location.X == -1)
+            {
+                changedWriteOptions.Location.X = 0;
+            }
+            if (errorWriteOptions == null || changedWriteOptions.Location.Y == -1)
+            {
+                changedWriteOptions.Location.Y = promptFinalPos.Y + 2;
+            }
+            changedWriteOptions.ResetCursorPosition = true;
+
+            // Gets the integer from the user
+            while (invalidInput)
+            {
+                // Get the input
+                Console.SetCursorPosition(inputCursorPos.X, inputCursorPos.Y);
+                if (preventIncorrectText)
+                {
+                    integer = GetSpecificInput(allowedInputs, maxCharLength, maxCharHeight);
+                }
+                else
+                {
+                    integer = GetLimitedSizeInput(maxCharLength, maxCharHeight);
+                }
+                if (!isCaseSensitive)
+                {
+                    integer = integer.ToLower();
+                }
+
+                // Check if input is acceptable
+                if (allowedInputs.Contains(integer))
+                {
+                    invalidInput = false;
+                }
+                else
+                {
+                    // Clear the input
+                    ClearArea(inputCursorPos, new Location(inputCursorPos.X + maxCharLength, Console.CursorTop));
+
+                    // Clear the space taken by the previous error
+                    if (hadError)
+                    {
+                        ClearArea(changedWriteOptions.Location, finalCursorPosition);
+                    }
+
+                    // Write the error
+                    finalCursorPosition = FormattedWrite(errorPrompt, changedWriteOptions);
+                    hadError = true;
+                }
+            }
+
+            // Remove any errors that were created
+            if (hadError)
+            {
+                ClearArea(changedWriteOptions.Location, finalCursorPosition);
+            }
+
+            // Reset cursor position
+            Console.CursorLeft = writeOptions.Location.X;
+            return integer;
+        }
+
+        /// <summary>
+        /// Gets a user input and prevents user input getting longer than a set number of digits on one line
+        /// </summary>
+        /// <param name="maxLength">The maximum length/number of characters</param>
+        /// <returns>The user-inputted string</returns>
+        public static string GetLimitedSizeInput(int maxLength)
+        {
+            return GetLimitedSizeInput(maxLength, 1);
+        }
+
+        /// <summary>
+        /// Gets a user input and prevents user input getting larger than a certain area
+        /// </summary>
+        /// <param name="maxLength">The maximum length of the input</param>
+        /// <param name="maxHeight">The maximum number of lines the input can occupy</param>
+        /// <returns>The user-inputted string</returns>
+        public static string GetLimitedSizeInput(int maxLength, int maxHeight)
+        {
+            List<char> inputChars = new List<char>();
+            ConsoleKeyInfo keyInfo;
+            bool done = false;
+            Location originalCursorPosition = new Location();
+
+            while (!done)
+            {
+                keyInfo = Console.ReadKey(true);
+
+                switch (keyInfo.KeyChar)
+                {
+                    // What to do if backspace is pressed
+                    case '\b':
+
+                        // Remove the previous text
+                        if (inputChars.Count > 0)
+                        {
+                            Console.CursorLeft--;
+                            Console.Write(" ");
+                            Console.CursorLeft--;
+                            inputChars.RemoveAt(inputChars.Count - 1);
+                            if (Console.CursorLeft == originalCursorPosition.X && Console.CursorTop != originalCursorPosition.Y)
+                            {
+                                Console.SetCursorPosition(Console.CursorLeft + maxLength, Console.CursorTop - 1);
+                            }
+                        }
+                        break;
+
+                    // What to do if return/enter is pressed
+                    case '\r':
+                        done = true;
+                        break;
+
+                    // What to do if any other key is pressed
+                    default:
+
+                        // Check text validity
+                        if (inputChars.Count < (long)maxLength * maxHeight)
+                        {
+                            if (inputChars.Count % maxLength == 0 && inputChars.Count != 0)
+                            {
+                                Console.SetCursorPosition(originalCursorPosition.X, Console.CursorTop + 1);
+                            }
+                            Console.Write(keyInfo.KeyChar);
+                            inputChars.Add(keyInfo.KeyChar);
+                        }
+                        break;
+                }
+            }
+
+            // Set cursor position to starting X position plus one Y pos
+            Console.SetCursorPosition(originalCursorPosition.X, Console.CursorTop + 1);
+            return new string(inputChars.ToArray());
+        }
+
+        /// <summary>
+        /// Gets user input and prevents user input getting larger than a certain area or entering incorrect strings
+        /// </summary>
+        /// <param name="allowedText">The list of allowed text options that the user can type</param>
+        /// <returns>The user-inputted string</returns>
+        public static string GetSpecificInput(IEnumerable<string> allowedText, bool isCaseSensitive = false)
+        {
+            return GetSpecificInput(allowedText, int.MaxValue, 1);
+        }
+
+        /// <summary>
+        /// Gets user input and prevents user input getting larger than a certain area or entering incorrect strings
+        /// </summary>
+        /// <param name="allowedText">The list of allowed text options that the user can type</param>
+        /// <param name="maxLength">The maximum length of the input</param>
+        /// <returns>The user-inputted string</returns>
+        public static string GetSpecificInput(IEnumerable<string> allowedText, int maxLength, bool isCaseSensitive = false)
+        {
+            return GetSpecificInput(allowedText, maxLength, 1);
+        }
+
+        /// <summary>
+        /// Gets user input and prevents user input getting larger than a certain area or entering incorrect strings
+        /// </summary>
+        /// <param name="allowedText">The list of allowed text options that the user can type</param>
+        /// <param name="maxLength">The maximum length of the input</param>
+        /// <param name="maxHeight">The maximum number of lines the input can occupy</param>
+        /// <param name="isCaseSensitive">Whether the checker is case sensitive</param>
+        /// <returns>The user-inputted string</returns>
+        public static string GetSpecificInput(IEnumerable<string> allowedText, int maxLength, int maxHeight, bool isCaseSensitive = false)
+        {
+            if (!isCaseSensitive)
+            {
+                allowedText = allowedText.Select(x => x.ToLower());
+            }
+
+            List<char> inputChars = new List<char>();
+            ConsoleKeyInfo keyInfo;
+            bool done = false;
+            Location originalCursorPosition = new Location();
+
+            while (!done)
+            {
+                keyInfo = Console.ReadKey(true);
+
+                switch (keyInfo.KeyChar)
+                {
+                    // What to do if backspace is pressed
+                    case '\b':
+
+                        // Remove the previous text
+                        if (inputChars.Count > 0)
+                        {
+                            Console.CursorLeft--;
+                            Console.Write(" ");
+                            Console.CursorLeft--;
+                            inputChars.RemoveAt(inputChars.Count - 1);
+                            if (Console.CursorLeft == originalCursorPosition.X && Console.CursorTop != originalCursorPosition.Y)
+                            {
+                                Console.SetCursorPosition(Console.CursorLeft + maxLength, Console.CursorTop - 1);
+                            }
+                        }
+                        break;
+
+                    // What to do if return/enter is pressed
+                    case '\r':
+                        if (allowedText.Contains(new string(inputChars.ToArray())))
+                        {
+                            done = true;
+                        }
+                        break;
+
+                    // What to do if any other key is pressed
+                    default:
+
+                        // If not case-sensitive, lower the text
+                        char keyPressed = keyInfo.KeyChar;
+                        if (!isCaseSensitive)
+                        {
+                            keyPressed = keyPressed.ToString().ToLower()[0];
+                        }
+
+                        // Check text validity
+                        if (inputChars.Count < maxLength * maxHeight && LimitedTextAllowed(allowedText, inputChars.Concat(new char[] { keyPressed })))
+                        {
+                            if (inputChars.Count % maxLength == 0 && inputChars.Count != 0)
+                            {
+                                Console.SetCursorPosition(originalCursorPosition.X, Console.CursorTop + 1);
+                            }
+                            Console.Write(keyPressed);
+                            inputChars.Add(keyPressed);
+                        }
+                        break;
+                }
+            }
+
+            // Set cursor position to starting X position plus one Y pos
+            Console.SetCursorPosition(originalCursorPosition.X, Console.CursorTop + 1);
+            return new string(inputChars.ToArray());
+        }
+
+        /// <summary>
+        /// Checks whether the inputted text is valid
+        /// </summary>
+        /// <param name="allowedText">The list of allowed options</param>
+        /// <param name="inputChars">The current inputted text</param>
+        /// <returns>Whether the text is a part of any of the allowed text</returns>
+        private static bool LimitedTextAllowed(IEnumerable<string> allowedText, IEnumerable<char> inputChars)
+        {
+            string input = new string(inputChars.ToArray());
+
+            // Check every bit of text in the allowed list
+            foreach (string text in allowedText)
+            {
+                string gradualIncreasingText = "";
+
+                // Check if input is in any interation of the text 
+                foreach (char textCharacter in text)
+                {
+                    if (input == gradualIncreasingText)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+    }
+}
