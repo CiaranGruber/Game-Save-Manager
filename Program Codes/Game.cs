@@ -89,6 +89,14 @@ namespace ProgramCodes
             return gameData.ToArray();
         }
 
+        /// <summary>Adds a <c>Save</c> to the list of saves from a <c>Save</c> parameter</summary>
+        /// <param name="save">The save to be added</param>
+        public void AddSave(Save save)
+        {
+            Saves.Add(save);
+            Saves = Saves.OrderByDescending(x => x.Date).ToList();
+        }
+
         /// <summary>Adds a <c>Save</c> to the list of saves via parameters</summary>
         /// <param name="title">The title of the save</param>
         /// <param name="date">The string version of the date when the save was logged</param>
@@ -145,7 +153,14 @@ namespace ProgramCodes
         /// <returns>The <c>Game</c> as a readable string</returns>
         public override string ToString()
         {
-            return Name + ": " + Saves.Count + " saves (" + Link + ")";
+            if (Saves.Count == 1)
+            {
+                return Name + ": 1 save (" + Link + ")";
+            }
+            else
+            {
+                return Name + ": " + Saves.Count + " saves (" + Link + ")";
+            }
         }
 
         /// <summary>

@@ -43,6 +43,7 @@
     <Compile Include="DisplayScreenCode.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="General Utilities.cs" />
+    <Compile Include="Music.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Save.cs" />
   </ItemGroup>

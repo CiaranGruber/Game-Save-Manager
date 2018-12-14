@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace ProgramCodes
     /// </summary>
     public class DisplayScreenCode
     {
+        /// <summary>The culture for the DateTime</summary>
+        public readonly CultureInfo Culture = new CultureInfo("en-gb");
         /// <summary>Contains all the games in the collection</summary>
         public List<Game> Games;
         /// <summary>The save location that is set whenever saving/loading saves</summary>
@@ -34,7 +37,10 @@ namespace ProgramCodes
         /// <summary>Loads everything from the location saved</summary>
         public void Load()
         {
-            File.WriteAllText(SaveLocation, "");
+            if (!File.Exists(SaveLocation))
+            {
+                File.WriteAllText(SaveLocation, "");
+            }
             Load(File.ReadAllLines(SaveLocation));
         }
 
@@ -42,6 +48,7 @@ namespace ProgramCodes
         /// <param name="saveLocation">The location of the save</param>
         public void Load(string saveLocation)
         {
+            
             Load(File.ReadAllLines(saveLocation));
         }
 
@@ -80,12 +87,6 @@ namespace ProgramCodes
             Save(SaveLocation);
         }
 
-        public void AddGame(string gameName, string gameLink, bool save = true)
-        {
-            Games.Add(new Game(gameName, gameLink));
-            Save();
-        }
-
         /// <summary>Saves the save data in a specific location</summary>
         /// <param name="saveLocation">The location where the data is to be saved</param>
         public void Save(string saveLocation)
@@ -104,6 +105,34 @@ namespace ProgramCodes
             }
 
             return stringArray.ToArray();
+        }
+
+        /// <summary>
+        /// Adds a game to the games collection
+        /// </summary>
+        /// <param name="gameName">The name of the game</param>
+        /// <param name="gameLink">The link to the game</param>
+        /// <param name="save">Whether to save the list in the save location</param>
+        public void AddGame(string gameName, string gameLink, bool save = true)
+        {
+            Games.Add(new Game(gameName, gameLink));
+            if (save)
+            {
+                Save();
+            }
+        }
+
+        /// <summary>
+        /// Removes a game from the games collection
+        /// </summary>
+        /// <param name="gameName">The name of the game to remove</param>
+        public void RemoveGame(string gameName, bool save = true)
+        {
+            Games.RemoveAt(Games.FindIndex(x => x.Name.ToLower() == gameName.ToLower()));
+            if (save)
+            {
+                Save();
+            }
         }
     }
 }

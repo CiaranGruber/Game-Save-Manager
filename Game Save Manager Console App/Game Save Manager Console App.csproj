@@ -7,7 +7,7 @@
     <ProjectGuid>{7DBA489F-2C18-480C-B93C-84CD07FFA810}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Game_Save_Manager_Console_App</RootNamespace>
+    <RootNamespace>GameSaveManagerConsoleApp</RootNamespace>
     <AssemblyName>Game Save Manager Console App</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
