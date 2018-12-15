@@ -11,6 +11,11 @@ namespace GameSaveManagerConsoleApp
     class Program
     {
         /// <summary>
+        /// Plays the background music
+        /// </summary>
+        static Thread ExtraMusic = new Thread(() => BackgroundMusic(Songs.FurElise));
+
+        /// <summary>
         /// Any code that is common between interfaces
         /// </summary>
         public static DisplayScreenCode ScreenCode = new DisplayScreenCode("./savefile.txt");
@@ -788,10 +793,28 @@ namespace GameSaveManagerConsoleApp
             Console.ReadKey(true);
         }
 
+        /// <summary>
+        /// Plays background music unless muted
+        /// </summary>
+        /// <param name="songChoice"></param>
+        static void BackgroundMusic(Songs songChoice)
+        {
+            while (true)
+            {
+                Music.PlayFurElise(5, Instrument.ConsoleBeep);
+                Thread.Sleep(5000);
+            }
+
+        }
+
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.Unicode;
-            Music.PlayFurElise(120, Instrument.ConsoleBeep);
+
+            // Starts the background music
+            ExtraMusic.Start();
+
+            // Starts the chosen program
             ActualProgram();
             //Tests();
         }
