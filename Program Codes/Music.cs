@@ -2315,22 +2315,29 @@ namespace ProgramCodes
         {
             Thread leftHand = new Thread(() => PlayFurEliseLeftHand(bpm, instrument));
             Thread rightHand = new Thread(() => PlayFurEliseRightHand(bpm, instrument));
-
-            if (instrument != Instrument.ConsoleBeep)
-            {
-                leftHand.Start();
-            }
-            else
-            {
-                leftHand.Abort();
-            }
-            rightHand.Start();
-            rightHand.Join();
             try
             {
-                leftHand.Join();
+                if (instrument != Instrument.ConsoleBeep)
+                {
+                    leftHand.Start();
+                }
+                else
+                {
+                    leftHand.Abort();
+                }
+                rightHand.Start();
+                rightHand.Join();
+                try
+                {
+                    leftHand.Join();
+                }
+                catch { }
             }
-            catch { }
+            catch (Exception ex) when (ex is ThreadAbortException || ex is ThreadInterruptedException)
+            {
+                leftHand.Abort();
+                rightHand.Abort();
+            }
         }
     }
 }

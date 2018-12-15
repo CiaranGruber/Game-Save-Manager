@@ -13,7 +13,14 @@ namespace GameSaveManagerConsoleApp
         /// <summary>
         /// Plays the background music
         /// </summary>
-        static Thread ExtraMusic = new Thread(() => BackgroundMusic(Songs.FurElise));
+        static Thread ExtraMusic = new Thread(() => BackgroundMusic());
+
+        public static string CurrentSong;
+
+        public static Dictionary<string, Songs> SongNameToSong = new Dictionary<string, Songs>()
+        {
+            { "Für Elise", Songs.FurElise }
+        };
 
         /// <summary>
         /// Any code that is common between interfaces
@@ -26,6 +33,10 @@ namespace GameSaveManagerConsoleApp
         static void ViewSaveScreen(Save save, int saveIndex)
         {
             ConsoleUtils.PrepNewScreen("Game Save Manager");
+            if (Console.WindowWidth > "Game Save Manager".Length + ("Current Music: ".Length + CurrentSong.Length + 6) * 2)
+            {
+                ConsoleUtils.FormattedWrite("Current Music: " + CurrentSong, new FormattedWriteSettings { Location = new Location(0, 1), TextAlignment = Alignment.Right, InnerPadding = new Padding(0, 2, 0), ResetCursorPosition = true });
+            }
 
             // Create favourited status
             if (save.Favourited)
@@ -116,6 +127,7 @@ namespace GameSaveManagerConsoleApp
             ConsoleUtils.FormattedWrite("".PadLeft(Console.WindowWidth, '_'), new FormattedWriteSettings { InnerPadding = new Padding(0) });
             Console.CursorVisible = false;
             Console.ReadKey(true);
+            Console.CursorVisible = true;
         }
 
         /// <summary>
@@ -156,6 +168,10 @@ namespace GameSaveManagerConsoleApp
                 }
 
                 ConsoleUtils.PrepNewScreen("Game Save Manager");
+                if (Console.WindowWidth > "Game Save Manager".Length + ("Current Music: ".Length + CurrentSong.Length + 6) * 2)
+                {
+                    ConsoleUtils.FormattedWrite("Current Music: " + CurrentSong, new FormattedWriteSettings { Location = new Location(0, 1), TextAlignment = Alignment.Right, InnerPadding = new Padding(0, 2, 0), ResetCursorPosition = true });
+                }
 
                 // Create notes section
                 Location prevLocation = new Location();
@@ -238,12 +254,17 @@ namespace GameSaveManagerConsoleApp
             int menuMaxWidth = 0;
             int menuOption = 0;
             bool show = true;
+            List<string> menuOptions;
             Location previewLocation = new Location();
 
-            while (menuOption != 5)
+            while (menuOption != 7)
             {
                 ConsoleUtils.PrepNewScreen("Game Save Manager");
-                
+                if (Console.WindowWidth > "Game Save Manager".Length + ("Current Music: ".Length + CurrentSong.Length + 6) * 2)
+                {
+                    ConsoleUtils.FormattedWrite("Current Music: " + CurrentSong, new FormattedWriteSettings { Location = new Location(0, 1), TextAlignment = Alignment.Right, InnerPadding = new Padding(0, 2, 0), ResetCursorPosition = true });
+                }
+
                 // Get maximum widths
                 if (Console.WindowWidth >= 100)
                 {
@@ -295,45 +316,54 @@ namespace GameSaveManagerConsoleApp
                 }
 
                 // Show different menu if there are any games
+                menuOptions = new List<string>() { "Title", "Save Data", "Notes" };
+                if (save.Favourited)
+                {
+                    menuOptions.Add("Unfavourite Save");
+                }
+                else
+                {
+                    menuOptions.Add("Favourite Save");
+                }
+                if (save.SaveData != "")
+                {
+                    menuOptions.Add("Save to collection");
+                }
+                if (ExtraMusic.ThreadState == ThreadState.Aborted)
+                {
+                    menuOptions.Add("Start Music");
+                }
+                else
+                {
+                    menuOptions.Add("Stop Music");
+                }
+                menuOptions.Add("Quit (without saving)");
+                ConsoleUtils.CreateMenu(menuOptions, "Main Menu:");
                 if (save.SaveData == "")
                 {
-                    // Create menu
-                    if (save.Favourited)
-                    {
-                        ConsoleUtils.CreateMenu(new string[] { "Title", "Save Data", "Notes", "Unfavourite save", "Quit (without saving)" }, "Main Menu:");
-                    }
-                    else
-                    {
-                        ConsoleUtils.CreateMenu(new string[] { "Title", "Save Data", "Notes", "Favourite save", "Quit (without saving)" }, "Main Menu:");
-                    }
-                    menuOption = ConsoleUtils.FancyGetInteger("Menu Option: ", "Menu choice must be an integer", "Default", 1, 5, new FormattedWriteSettings { NewLine = false }, maxCharLength: 1);
+                    // Display menu
+                    menuOption = ConsoleUtils.FancyGetInteger("Menu Option: ", "Menu choice must be an integer", "Default", 1, 6, new FormattedWriteSettings { NewLine = false }, maxCharLength: 1);
 
-                    if (menuOption == 5)
+                    if (menuOption > 4)
                     {
-                        menuOption = 6;
+                        menuOption += 1;
                     }
                 }
                 else
                 {
-                    // Create menu
-                    if (save.Favourited)
-                    {
-                        ConsoleUtils.CreateMenu(new string[] { "Title", "Save Data", "Notes", "Unfavourite save", "Save to collection", "Quit (without saving)" }, "Main Menu:");
-                    }
-                    else
-                    {
-                        ConsoleUtils.CreateMenu(new string[] { "Title", "Save Data", "Notes", "Favourite save", "Save to collection", "Quit (without saving)" }, "Main Menu:");
-                    }
-                    menuOption = ConsoleUtils.FancyGetInteger("Menu Option: ", "Menu choice must be an integer", "Default", 1, 6, new FormattedWriteSettings { NewLine = false }, maxCharLength: 1);
+                    // Display menu
+                    menuOption = ConsoleUtils.FancyGetInteger("Menu Option: ", "Menu choice must be an integer", "Default", 1, 7, new FormattedWriteSettings { NewLine = false }, maxCharLength: 1);
                 }
                 
                 // Change values
                 if (menuOption == 1)
                 {
+                    Console.WriteLine();
                     save.Title = ConsoleUtils.FancyGetInput("Title: ", menuMaxWidth);
                 }
                 else if (menuOption == 2)
                 {
+                    Console.WriteLine();
                     save.SaveData = ConsoleUtils.FancyGetInput("Save Data: ", menuMaxWidth);
                 }
                 else if (menuOption == 3)
@@ -351,6 +381,18 @@ namespace GameSaveManagerConsoleApp
                         save.Date = DateTime.Now;
                     }
                     return save;
+                }
+                else if (menuOption == 6)
+                {
+                    if (ExtraMusic.ThreadState == ThreadState.Aborted)
+                    {
+                        ExtraMusic = new Thread(() => BackgroundMusic());
+                        ExtraMusic.Start();
+                    }
+                    else
+                    {
+                        ExtraMusic.Abort();
+                    }
                 }
             }
 
@@ -370,6 +412,10 @@ namespace GameSaveManagerConsoleApp
             while (menuOption != 5)
             {
                 ConsoleUtils.PrepNewScreen("Game Save Manager");
+                if (Console.WindowWidth > "Game Save Manager".Length + ("Current Music: ".Length + CurrentSong.Length + 6) * 2)
+                {
+                    ConsoleUtils.FormattedWrite("Current Music: " + CurrentSong, new FormattedWriteSettings { Location = new Location(0, 1), TextAlignment = Alignment.Right, InnerPadding = new Padding(0, 2, 0), ResetCursorPosition = true });
+                }
                 ShowFancyBox("Saves:", ScreenCode.Games[gameIndex].Saves);
 
                 if (Console.WindowWidth > 70)
@@ -483,6 +529,10 @@ namespace GameSaveManagerConsoleApp
             while (menuOption != 3)
             {
                 ConsoleUtils.PrepNewScreen("Game Save Manager");
+                if (Console.WindowWidth > "Game Save Manager".Length + ("Current Music: ".Length + CurrentSong.Length + 6) * 2)
+                {
+                    ConsoleUtils.FormattedWrite("Current Music: " + CurrentSong, new FormattedWriteSettings { Location = new Location(0, 1), TextAlignment = Alignment.Right, InnerPadding = new Padding(0, 2, 0), ResetCursorPosition = true });
+                }
                 ShowFancyBox("Games:", ScreenCode.Games);
 
                 // Show different menu if there are any games
@@ -538,26 +588,26 @@ namespace GameSaveManagerConsoleApp
         static void ShowFancyBox(string title, IEnumerable<object> stuffToShow)
         {
             // Check console size
-            if (Console.WindowWidth > 60)
+            if (Console.WindowWidth > 66)
             {
                 int allowedWidth = 36;
                 int cursorAddition;
                 Location gameBoxLocation;
 
                 // Change width of box depending on console size
-                if (Console.WindowWidth < 72)
+                if (Console.WindowWidth < 85)
                 {
-                    allowedWidth = 36 - (72 - Console.WindowWidth);
+                    allowedWidth = 36 - (85 - Console.WindowWidth);
                 }
 
                 // Set location of box
-                if (Console.WindowWidth > 60)
+                if (Console.WindowWidth > 75)
                 {
                     gameBoxLocation = new Location(Console.WindowWidth - allowedWidth - 12, 8);
                 }
                 else
                 {
-                    gameBoxLocation = new Location(Console.WindowWidth - allowedWidth - 12, 7);
+                    gameBoxLocation = new Location(Console.WindowWidth - allowedWidth - 12, 6);
                 }
 
                 // Create games text
@@ -579,7 +629,7 @@ namespace GameSaveManagerConsoleApp
                 }
 
                 // Create the box
-                if (Console.WindowWidth > 70)
+                if (Console.WindowWidth > 75)
                 {
                     ConsoleUtils.CreateBorder(gameBoxLocation, new Location(gameBoxLocation.X + allowedWidth, cursorAddition), new Padding(1, 4, 4, 0), new Borders
                     {
@@ -613,7 +663,7 @@ namespace GameSaveManagerConsoleApp
 
             Console.Title = "Game Save Manager - Created By Ciaran";
 
-            while (menuOption != 3)
+            while (menuOption != 4)
             {
                 // Gets the maximum width
                 if (Console.WindowWidth > 70)
@@ -626,13 +676,44 @@ namespace GameSaveManagerConsoleApp
                 }
 
                 ConsoleUtils.PrepNewScreen("Game Save Manager");
+                if (Console.WindowWidth > "Game Save Manager".Length + ("Current Music: ".Length + CurrentSong.Length + 6) * 2)
+                {
+                    ConsoleUtils.FormattedWrite("Current Music: " + CurrentSong, new FormattedWriteSettings { Location = new Location(0, 1), TextAlignment = Alignment.Right, InnerPadding = new Padding(0, 2, 0), ResetCursorPosition = true });
+                }
                 ShowFancyBox("Games:", ScreenCode.Games);
 
                 // Show different menu if there are any games
                 if (ScreenCode.Games.Count > 0)
                 {
-                    // Create menu
-                    ConsoleUtils.CreateMenu(new string[] { "Add/Remove Games", "Edit Games", "Quit" }, "Main Menu:");
+                    // Display menu
+                    if (ExtraMusic.ThreadState == ThreadState.Aborted)
+                    {
+                        ConsoleUtils.CreateMenu(new string[] { "Add/Remove Games", "Edit Games", "Start Music", "Quit" }, "Main Menu:");
+                    }
+                    else
+                    {
+                        ConsoleUtils.CreateMenu(new string[] { "Add/Remove Games", "Edit Games", "Stop Music", "Quit" }, "Main Menu:");
+                    }
+                    if (Console.WindowWidth > 80)
+                    {
+                        menuOption = ConsoleUtils.FancyGetInteger("Menu Option: ", "Menu choice must be an integer", "Default", 1, 4, new FormattedWriteSettings { NewLine = false, InnerPadding = new Padding(1, 4, 0), MaximumWidth = Console.WindowWidth - 60 }, maxCharLength: 1);
+                    }
+                    else
+                    {
+                        menuOption = ConsoleUtils.FancyGetInteger("Menu Option: ", "Menu choice must be an integer", "Default", 1, 4, new FormattedWriteSettings { NewLine = false, InnerPadding = new Padding(1, 4, 0), MaximumWidth = 27 }, maxCharLength: 1);
+                    }
+                }
+                else
+                {
+                    // Display menu
+                    if (ExtraMusic.ThreadState == ThreadState.Aborted)
+                    {
+                        ConsoleUtils.CreateMenu(new string[] { "Add/Remove Games", "Start Music", "Quit" }, "Main Menu:");
+                    }
+                    else
+                    {
+                        ConsoleUtils.CreateMenu(new string[] { "Add/Remove Games", "Stop Music", "Quit" }, "Main Menu:");
+                    }
                     if (Console.WindowWidth > 80)
                     {
                         menuOption = ConsoleUtils.FancyGetInteger("Menu Option: ", "Menu choice must be an integer", "Default", 1, 3, new FormattedWriteSettings { NewLine = false, InnerPadding = new Padding(1, 4, 0), MaximumWidth = Console.WindowWidth - 60 }, maxCharLength: 1);
@@ -641,36 +722,41 @@ namespace GameSaveManagerConsoleApp
                     {
                         menuOption = ConsoleUtils.FancyGetInteger("Menu Option: ", "Menu choice must be an integer", "Default", 1, 3, new FormattedWriteSettings { NewLine = false, InnerPadding = new Padding(1, 4, 0), MaximumWidth = 27 }, maxCharLength: 1);
                     }
-                }
-                else
-                {
-                    // Create menu
-                    ConsoleUtils.CreateMenu(new string[] { "Add/Remove Games", "Quit" }, "Main Menu:");
-                    if (Console.WindowWidth > 80)
-                    {
-                        menuOption = ConsoleUtils.FancyGetInteger("Menu Option: ", "Menu choice must be an integer", "Default", 1, 2, new FormattedWriteSettings { NewLine = false, InnerPadding = new Padding(1, 4, 0), MaximumWidth = Console.WindowWidth - 60 }, maxCharLength: 1);
-                    }
-                    else
-                    {
-                        menuOption = ConsoleUtils.FancyGetInteger("Menu Option: ", "Menu choice must be an integer", "Default", 1, 2, new FormattedWriteSettings { NewLine = false, InnerPadding = new Padding(1, 4, 0), MaximumWidth = 27 }, maxCharLength: 1);
-                    }
 
-                    // Set quit option to 3 so it actually quits
-                    if (menuOption == 2)
+                    // Set menu option up one due to other available option
+                    if (menuOption != 1)
                     {
-                        menuOption = 3;
+                        menuOption += 1;
                     }
                 }
+
+                // Add/Remove games
                 if (menuOption == 1)
                 {
                     AddGameScreen();
                 }
+
+                // Edit games
                 else if (menuOption == 2)
                 {
                     string gameName;
                     gameName = ConsoleUtils.FancyGetAllowedInput(ScreenCode.Games.Select(x => x.Name), "Name of the game: ", "Invalid Game Name", false, new FormattedWriteSettings { NewLine = false, InnerPadding = new Padding(1, 4, 0) }, maxCharLength: maxWidth, maxCharHeight: int.MaxValue, preventIncorrectText: true);
 
                     EditSavesScreen(gameName);
+                }
+
+                // Change music setting
+                else if (menuOption == 3)
+                {
+                    if (ExtraMusic.ThreadState == ThreadState.Aborted)
+                    {
+                        ExtraMusic = new Thread(() => BackgroundMusic());
+                        ExtraMusic.Start();
+                    }
+                    else
+                    {
+                        ExtraMusic.Abort();
+                    }
                 }
             }
         }
@@ -796,15 +882,19 @@ namespace GameSaveManagerConsoleApp
         /// <summary>
         /// Plays background music unless muted
         /// </summary>
-        /// <param name="songChoice"></param>
-        static void BackgroundMusic(Songs songChoice)
+        static void BackgroundMusic()
         {
             while (true)
             {
-                Music.PlayFurElise(5, Instrument.ConsoleBeep);
+                // Choose song
+                Random rand = new Random();
+                string[] songs = SongNameToSong.Keys.ToArray();
+                CurrentSong = songs[rand.Next(songs.Length)];
+
+                // Play song
+                Music.PlaySong(SongNameToSong[CurrentSong]);
                 Thread.Sleep(5000);
             }
-
         }
 
         static void Main(string[] args)
@@ -812,11 +902,13 @@ namespace GameSaveManagerConsoleApp
             Console.OutputEncoding = Encoding.Unicode;
 
             // Starts the background music
+            ExtraMusic.IsBackground = true;
             ExtraMusic.Start();
 
             // Starts the chosen program
             ActualProgram();
             //Tests();
+            ExtraMusic.Abort();
         }
     }
 }
