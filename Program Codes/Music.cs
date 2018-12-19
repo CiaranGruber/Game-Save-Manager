@@ -11,7 +11,7 @@ namespace ProgramCodes
     /// <summary>
     /// All the songs that are available
     /// </summary>
-    public enum Songs { FurElise };
+    public enum Songs { FurElise, MaryHadALittleLamb };
 
     /// <summary>
     /// A set of all in instruments provided
@@ -197,6 +197,10 @@ namespace ProgramCodes
             {
                 PlayFurElise(120, Instrument.ConsoleBeep);
             }
+            else if (song == Songs.MaryHadALittleLamb)
+            {
+                PlayMaryHadALittleLamb(120, Instrument.ConsoleBeep);
+            }
         }
 
         /// <summary>
@@ -209,6 +213,10 @@ namespace ProgramCodes
             if (song == Songs.FurElise)
             {
                 PlayFurElise(120, instrument);
+            }
+            else if (song == Songs.MaryHadALittleLamb)
+            {
+                PlayMaryHadALittleLamb(120, instrument);
             }
         }
 
@@ -223,6 +231,10 @@ namespace ProgramCodes
             if (song == Songs.FurElise)
             {
                 PlayFurElise(bpm, instrument);
+            }
+            else if (song == Songs.MaryHadALittleLamb)
+            {
+                PlayMaryHadALittleLamb(bpm, instrument);
             }
         }
 
@@ -2336,6 +2348,116 @@ namespace ProgramCodes
             catch (Exception ex) when (ex is ThreadAbortException || ex is ThreadInterruptedException)
             {
                 leftHand.Abort();
+                rightHand.Abort();
+            }
+        }
+
+        /// <summary>
+        /// Plays Mary had a little lamb with the right hand
+        /// </summary>
+        /// <param name="bpm">Beats per minute to play at</param>
+        /// <param name="instrument">The instrument to be used</param>
+        public static void PlayMaryHadALittleLambRightHand(int bpm, Instrument instrument)
+        {
+            // Bar 1
+            PlayNotes("E4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+            PlayNotes("D4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+            PlayNotes("C4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+            PlayNotes("D4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+
+            // Bar 2
+            PlayNotes("E4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+            PlayNotes("E4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+            PlayNotes("E4", "M", bpm, instrument);
+            MoveForward("M", bpm, instrument);
+
+            // Bar 3
+            PlayNotes("D4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+            PlayNotes("D4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+            PlayNotes("D4", "M", bpm, instrument);
+            MoveForward("M", bpm, instrument);
+
+            // Bar 4
+            PlayNotes("E4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+            PlayNotes("G4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+            PlayNotes("G4", "M", bpm, instrument);
+            MoveForward("M", bpm, instrument);
+
+            // Bar 5
+            PlayNotes("E4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+            PlayNotes("D4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+            PlayNotes("C4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+            PlayNotes("D4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+
+            // Bar 6
+            PlayNotes("E4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+            PlayNotes("E4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+            PlayNotes("E4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+            PlayNotes("E4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+
+            // Bar 7
+            PlayNotes("D4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+            PlayNotes("D4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+            PlayNotes("E4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+            PlayNotes("D4", "C", bpm, instrument);
+            MoveForward("C", bpm, instrument);
+
+            // Bar 8
+            PlayNotes("C4", "B", bpm, instrument);
+            MoveForward("B", bpm, instrument);
+        }
+
+        /// <summary>
+        /// Plays Mary had a little lamb with both hands if available
+        /// </summary>
+        /// <param name="bpm">Beats per minute to play at</param>
+        /// <param name="instrument">The instrument to be used</param>
+        public static void PlayMaryHadALittleLamb(int bpm, Instrument instrument)
+        {
+            //Thread leftHand = new Thread(() => PlayFurEliseLeftHand(bpm, instrument));
+            Thread rightHand = new Thread(() => PlayMaryHadALittleLambRightHand(bpm, instrument));
+            try
+            {
+                if (instrument != Instrument.ConsoleBeep)
+                {
+                    //leftHand.Start();
+                }
+                else
+                {
+                    //leftHand.Abort();
+                }
+                rightHand.Start();
+                rightHand.Join();
+                try
+                {
+                    //leftHand.Join();
+                }
+                catch { }
+            }
+            catch (Exception ex) when (ex is ThreadAbortException || ex is ThreadInterruptedException)
+            {
+                //leftHand.Abort();
                 rightHand.Abort();
             }
         }

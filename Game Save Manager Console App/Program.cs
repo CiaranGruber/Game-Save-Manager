@@ -15,11 +15,18 @@ namespace GameSaveManagerConsoleApp
         /// </summary>
         static Thread ExtraMusic = new Thread(() => BackgroundMusic());
 
+        /// <summary>
+        /// The current song being played
+        /// </summary>
         public static string CurrentSong;
 
+        /// <summary>
+        /// A dictionary that has the song name as a string and the actual song itself
+        /// </summary>
         public static Dictionary<string, Songs> SongNameToSong = new Dictionary<string, Songs>()
         {
-            { "Für Elise", Songs.FurElise }
+            { "Für Elise", Songs.FurElise },
+            { "Mary had a little lamb", Songs.MaryHadALittleLamb }
         };
 
         /// <summary>
@@ -470,8 +477,8 @@ namespace GameSaveManagerConsoleApp
                     Save editedSave;
 
                     // Gets the save date and index
-                    saveDate = ConsoleUtils.FancyGetAllowedInput(ScreenCode.Games[gameIndex].Saves.Select(x => x.Date.ToString(ScreenCode.Culture)), "Date of the save (exactly as seen): ", "Invalid save date", false, new FormattedWriteSettings { NewLine = false, InnerPadding = new Padding(1, 4, 0) }, maxCharLength: maxWidth - 15, maxCharHeight: 1 + 50 / (maxWidth - 15), preventIncorrectText: true);
-                    saveIndex = ScreenCode.Games[gameIndex].Saves.FindIndex(x => x.Date.ToString(ScreenCode.Culture) == saveDate);
+                    saveDate = ConsoleUtils.FancyGetAllowedInput(ScreenCode.Games[gameIndex].Saves.Select(x => x.Date.ToString(Save.Culture)), "Date of the save (exactly as seen): ", "Invalid save date", false, new FormattedWriteSettings { NewLine = false, InnerPadding = new Padding(1, 4, 0) }, maxCharLength: maxWidth - 15, maxCharHeight: 1 + 50 / (maxWidth - 15), preventIncorrectText: true);
+                    saveIndex = ScreenCode.Games[gameIndex].Saves.FindIndex(x => x.Date.ToString(Save.Culture) == saveDate);
 
                     // Change save if the saveData hasn't been set to nothing
                     editedSave = EditSaveScreen(ScreenCode.Games[gameIndex].Saves[saveIndex]);
@@ -488,7 +495,7 @@ namespace GameSaveManagerConsoleApp
                     string saveDate;
 
                     // Gets the save date
-                    saveDate = ConsoleUtils.FancyGetAllowedInput(ScreenCode.Games[gameIndex].Saves.Select(x => x.Date.ToString(ScreenCode.Culture)), "Date of the save (exactly as seen): ", "Invalid save date", false, new FormattedWriteSettings { NewLine = false, InnerPadding = new Padding(1, 4, 0) }, maxCharLength: maxWidth - 15, maxCharHeight: 1 + 50 / (maxWidth - 15), preventIncorrectText: true);
+                    saveDate = ConsoleUtils.FancyGetAllowedInput(ScreenCode.Games[gameIndex].Saves.Select(x => x.Date.ToString(Save.Culture)), "Date of the save (exactly as seen): ", "Invalid save date", false, new FormattedWriteSettings { NewLine = false, InnerPadding = new Padding(1, 4, 0) }, maxCharLength: maxWidth - 15, maxCharHeight: 1 + 50 / (maxWidth - 15), preventIncorrectText: true);
 
                     // Delete the save
                     ScreenCode.Games[gameIndex].RemoveSave(saveDate);
@@ -501,8 +508,8 @@ namespace GameSaveManagerConsoleApp
                     int saveIndex;
 
                     // Gets the save date and index
-                    saveDate = ConsoleUtils.FancyGetAllowedInput(ScreenCode.Games[gameIndex].Saves.Select(x => x.Date.ToString(ScreenCode.Culture)), "Date of the save (exactly as seen): ", "Invalid save date", false, new FormattedWriteSettings { NewLine = false, InnerPadding = new Padding(1, 4, 0) }, maxCharLength: maxWidth - 15, maxCharHeight: 1 + 50 / (maxWidth - 15), preventIncorrectText: true);
-                    saveIndex = ScreenCode.Games[gameIndex].Saves.FindIndex(x => x.Date.ToString(ScreenCode.Culture) == saveDate);
+                    saveDate = ConsoleUtils.FancyGetAllowedInput(ScreenCode.Games[gameIndex].Saves.Select(x => x.Date.ToString(Save.Culture)), "Date of the save (exactly as seen): ", "Invalid save date", false, new FormattedWriteSettings { NewLine = false, InnerPadding = new Padding(1, 4, 0) }, maxCharLength: maxWidth - 15, maxCharHeight: 1 + 50 / (maxWidth - 15), preventIncorrectText: true);
+                    saveIndex = ScreenCode.Games[gameIndex].Saves.FindIndex(x => x.Date.ToString(Save.Culture) == saveDate);
 
                     ViewSaveScreen(ScreenCode.Games[gameIndex].Saves[saveIndex], saveIndex);
                 }
@@ -659,8 +666,7 @@ namespace GameSaveManagerConsoleApp
         {
             int menuOption = -1;
             int maxWidth;
-
-
+            
             Console.Title = "Game Save Manager - Created By Ciaran";
 
             while (menuOption != 4)

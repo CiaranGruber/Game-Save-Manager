@@ -24,7 +24,7 @@ namespace ProgramCodes
         public string[] Notes;
 
         /// <summary>The culture for the DateTime</summary>
-        public readonly CultureInfo Culture = new CultureInfo("en-gb");
+        public static CultureInfo Culture = new CultureInfo("en-gb");
 
         /// <summary>
         /// Initialises a new <c>Save</c> instance from parameters

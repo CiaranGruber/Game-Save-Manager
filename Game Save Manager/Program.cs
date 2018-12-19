@@ -16,7 +16,7 @@ namespace GameSaveManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DisplayScreen());
+            Application.Run(new FormNav());
         }
     }
 }

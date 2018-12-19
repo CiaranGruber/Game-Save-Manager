@@ -13,8 +13,6 @@ namespace ProgramCodes
     /// </summary>
     public class DisplayScreenCode
     {
-        /// <summary>The culture for the DateTime</summary>
-        public readonly CultureInfo Culture = new CultureInfo("en-gb");
         /// <summary>Contains all the games in the collection</summary>
         public List<Game> Games;
         /// <summary>The save location that is set whenever saving/loading saves</summary>

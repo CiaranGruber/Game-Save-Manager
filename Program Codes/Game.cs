@@ -125,7 +125,7 @@ namespace ProgramCodes
         /// <param name="newNotes">The new notes for the edited save</param>
         public void EditSave(string date, string newTitle, bool newFavourited, string newSaveData, string[] newNotes)
         {
-            int index = Saves.FindIndex(x => x.Date.ToString(x.Culture) == date);
+            int index = Saves.FindIndex(x => x.Date.ToString(Save.Culture) == date);
             Saves[index].Title = newTitle;
             Saves[index].Favourited = newFavourited;
             Saves[index].SaveData = newSaveData;
@@ -136,7 +136,7 @@ namespace ProgramCodes
         /// <param name="date">The date of the save</param>
         public void ChangeFavouriteStatus(string date)
         {
-            int saveIndex = Saves.FindIndex(x => x.Date.ToString(x.Culture) == date);
+            int saveIndex = Saves.FindIndex(x => x.Date.ToString(Save.Culture) == date);
             Saves[saveIndex].Favourited = Saves[saveIndex].Favourited == false;
         }
 
@@ -144,7 +144,7 @@ namespace ProgramCodes
         /// <param name="date">The date of the save</param>
         public void RemoveSave(string date)
         {
-            Saves.RemoveAt(Saves.FindIndex(x => x.Date.ToString(x.Culture) == date));
+            Saves.RemoveAt(Saves.FindIndex(x => x.Date.ToString(Save.Culture) == date));
         }
 
         /// <summary>

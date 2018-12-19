@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,10 +55,42 @@
     <Compile Include="DisplayScreen.Designer.cs">
       <DependentUpon>DisplayScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Edit Save.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit Save.Designer.cs">
+      <DependentUpon>Edit Save.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form Navigation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form Navigation.Designer.cs">
+      <DependentUpon>Form Navigation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Game Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Game Settings.Designer.cs">
+      <DependentUpon>Game Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Navigation Class.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThreadChangeCode.cs" />
+    <Compile Include="View Save.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View Save.Designer.cs">
+      <DependentUpon>View Save.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="DisplayScreen.resx">
       <DependentUpon>DisplayScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit Save.resx">
+      <DependentUpon>Edit Save.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Game Settings.resx">
+      <DependentUpon>Game Settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -67,6 +102,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View Save.resx">
+      <DependentUpon>View Save.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -79,6 +117,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Program Codes\Program Codes.csproj">
+      <Project>{dfaba398-3e0c-4674-ae2b-bc64d04f7995}</Project>
+      <Name>Program Codes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Favourited.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Unfavourited.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Music Muted.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Music Unmuted.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
