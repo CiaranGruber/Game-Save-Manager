@@ -26,60 +26,60 @@ namespace ProgramCodes
         /// <summary>
         /// Contains note to frequencies
         /// </summary>
-        public static Dictionary<string, string> NoteToActualNote = new Dictionary<string, string>()
+        public static Dictionary<string, System.IO.UnmanagedMemoryStream> NoteToResource = new Dictionary<string, System.IO.UnmanagedMemoryStream>()
         {
-            { "A0", "A0" }, { "A#0", "Bb0" },
-            { "Bb0", "Bb0" }, { "B0", "B0" },
-            { "C1", "C1" }, { "C#1", "Db1" },
-            { "Db1", "Db1" }, { "D1", "D1" }, { "D#1", "Eb1" },
-            { "Eb1", "Eb1" }, { "E1", "E1" },
-            { "F1", "F1" }, { "F#1", "Gb1" },
-            { "Gb1", "Gb1" }, { "G1", "G1" }, { "G#1", "Ab1" },
-            { "Ab1", "Ab1" }, { "A1", "A1" }, { "A#1", "Bb1" },
-            { "Bb1", "Bb1" }, { "B1", "B1" },
-            { "C2", "C2" }, { "C#2", "Db2" },
-            { "Db2", "Db2" }, { "D2", "D2" }, { "D#2", "Eb2" },
-            { "Eb2", "Eb2" }, { "E2", "E2" },
-            { "F2", "F2" }, { "F#2", "Gb2" },
-            { "Gb2", "Gb2" }, { "G2", "G2" }, { "G#2", "Ab2" },
-            { "Ab2", "Ab2" }, { "A2", "A2" }, { "A#2", "Bb2" },
-            { "Bb2", "Bb2" }, { "B2", "B2" },
-            { "C3", "C3" }, { "C#3", "Db3" },
-            { "Db3", "Db3" }, { "D3", "D3" }, { "D#3", "Eb3" },
-            { "Eb3", "Eb3" }, { "E3", "E3" },
-            { "F3", "F3" }, { "F#3", "Gb3" },
-            { "Gb3", "Gb3" }, { "G3", "G3" }, { "G#3", "Ab3" },
-            { "Ab3", "Ab3" }, { "A3", "A3" }, { "A#3", "Bb3" },
-            { "Bb3", "Eb1" }, { "B3", "B3" },
-            { "C4", "C4" }, { "C#4", "Db4" },
-            { "Db4", "Db4" }, { "D4", "D4" }, { "D#4", "Eb4" },
-            { "Eb4", "Eb4" }, { "E4", "E4" },
-            { "F4", "F4" }, { "F#4", "Gb4" },
-            { "Gb4", "Gb4" }, { "G4", "G4" }, { "G#4", "Ab4" },
-            { "Ab4", "Ab4" }, { "A4", "A4" }, { "A#4", "Bb4" },
-            { "Bb4", "Bb4" }, { "B4", "B4" },
-            { "C5", "C5" }, { "C#5", "Db5" },
-            { "Db5", "Db5" }, { "D5", "D5" }, { "D#5", "Eb5" },
-            { "Eb5", "Eb5" }, { "E5", "E5" },
-            { "F5", "F5" }, { "F#5", "Gb5" },
-            { "Gb5", "Gb5" }, { "G5", "G5" }, { "G#5", "Ab5" },
-            { "Ab5", "Ab5" }, { "A5", "A5" }, { "A#5", "Bb5" },
-            { "Bb5", "Bb5" }, { "B5", "B5" },
-            { "C6", "C6" }, { "C#6", "Db6" },
-            { "Db6", "Db6" }, { "D6", "D6" }, { "D#6", "Eb6" },
-            { "Eb6", "Eb6" }, { "E6", "E6" },
-            { "F6", "F6" }, { "F#6", "Gb6" },
-            { "Gb6", "Gb6" }, { "G6", "G6" }, { "G#6", "Ab6" },
-            { "Ab6", "Ab6" }, { "A6", "A6" }, { "A#6", "Bb6" },
-            { "Bb6", "Bb6" }, { "B6", "B6" },
-            { "C7", "C7" }, { "C#7", "Db7" },
-            { "Db7", "Db7" }, { "D7", "D7" }, { "D#7", "Eb7" },
-            { "Eb7", "Eb7" }, { "E7", "E7" },
-            { "F7", "F7" }, { "F#7", "Gb7" },
-            { "Gb7", "Gb7" }, { "G7", "G7" }, { "G#7", "Ab7" },
-            { "Ab7", "Ab7" }, { "A7", "A7" }, { "A#7", "Bb7" },
-            { "Bb7", "Bb7" }, { "B7", "B7" },
-            { "C8", "C8" }
+            { "A0", Properties.Resources.Piano_A0 }, { "A#0", Properties.Resources.Piano_Bb0 },
+            { "Bb0", Properties.Resources.Piano_Bb0 }, { "B0", Properties.Resources.Piano_B0 },
+            { "C1", Properties.Resources.Piano_C1 }, { "C#1", Properties.Resources.Piano_Db1 },
+            { "Db1", Properties.Resources.Piano_Db1 }, { "D1", Properties.Resources.Piano_D1 }, { "D#1", Properties.Resources.Piano_Eb1 },
+            { "Eb1", Properties.Resources.Piano_Eb1 }, { "E1", Properties.Resources.Piano_E1 },
+            { "F1", Properties.Resources.Piano_F1 }, { "F#1", Properties.Resources.Piano_Gb1 },
+            { "Gb1", Properties.Resources.Piano_Gb1 }, { "G1", Properties.Resources.Piano_G1 }, { "G#1", Properties.Resources.Piano_Ab1 },
+            { "Ab1", Properties.Resources.Piano_Ab1 }, { "A1", Properties.Resources.Piano_A1 }, { "A#1", Properties.Resources.Piano_Bb1 },
+            { "Bb1", Properties.Resources.Piano_Bb1 }, { "B1", Properties.Resources.Piano_B1 },
+            { "C2", Properties.Resources.Piano_C2 }, { "C#2", Properties.Resources.Piano_Db2 },
+            { "Db2", Properties.Resources.Piano_Db2 }, { "D2", Properties.Resources.Piano_D2 }, { "D#2", Properties.Resources.Piano_Eb2 },
+            { "Eb2", Properties.Resources.Piano_Eb2 }, { "E2", Properties.Resources.Piano_E2 },
+            { "F2", Properties.Resources.Piano_F2 }, { "F#2", Properties.Resources.Piano_Gb2 },
+            { "Gb2", Properties.Resources.Piano_Gb2 }, { "G2", Properties.Resources.Piano_G2 }, { "G#2", Properties.Resources.Piano_Ab2 },
+            { "Ab2", Properties.Resources.Piano_Ab2 }, { "A2", Properties.Resources.Piano_A2 }, { "A#2", Properties.Resources.Piano_Bb2 },
+            { "Bb2", Properties.Resources.Piano_Bb2 }, { "B2", Properties.Resources.Piano_B2 },
+            { "C3", Properties.Resources.Piano_C3 }, { "C#3", Properties.Resources.Piano_Db3 },
+            { "Db3", Properties.Resources.Piano_Db3 }, { "D3", Properties.Resources.Piano_D3 }, { "D#3", Properties.Resources.Piano_Eb3 },
+            { "Eb3", Properties.Resources.Piano_Eb3 }, { "E3", Properties.Resources.Piano_E3 },
+            { "F3", Properties.Resources.Piano_F3 }, { "F#3", Properties.Resources.Piano_Gb3 },
+            { "Gb3", Properties.Resources.Piano_Gb3 }, { "G3", Properties.Resources.Piano_G3 }, { "G#3", Properties.Resources.Piano_Ab3 },
+            { "Ab3", Properties.Resources.Piano_Ab3 }, { "A3", Properties.Resources.Piano_A3 }, { "A#3", Properties.Resources.Piano_Bb3 },
+            { "Bb3", Properties.Resources.Piano_Bb3 }, { "B3", Properties.Resources.Piano_B3 },
+            { "C4", Properties.Resources.Piano_C4 }, { "C#4", Properties.Resources.Piano_Db4 },
+            { "Db4", Properties.Resources.Piano_Db4 }, { "D4", Properties.Resources.Piano_D4 }, { "D#4", Properties.Resources.Piano_Eb4 },
+            { "Eb4", Properties.Resources.Piano_Eb4 }, { "E4", Properties.Resources.Piano_E4 },
+            { "F4", Properties.Resources.Piano_F4 }, { "F#4", Properties.Resources.Piano_Gb4 },
+            { "Gb4", Properties.Resources.Piano_Gb4 }, { "G4", Properties.Resources.Piano_G4 }, { "G#4", Properties.Resources.Piano_Ab4 },
+            { "Ab4", Properties.Resources.Piano_Ab4 }, { "A4", Properties.Resources.Piano_A4 }, { "A#4", Properties.Resources.Piano_Bb4 },
+            { "Bb4", Properties.Resources.Piano_Bb4 }, { "B4", Properties.Resources.Piano_B4 },
+            { "C5", Properties.Resources.Piano_C5 }, { "C#5", Properties.Resources.Piano_Db5 },
+            { "Db5", Properties.Resources.Piano_Db5 }, { "D5", Properties.Resources.Piano_D5 }, { "D#5", Properties.Resources.Piano_Eb5 },
+            { "Eb5", Properties.Resources.Piano_Eb5 }, { "E5", Properties.Resources.Piano_E5 },
+            { "F5", Properties.Resources.Piano_F5 }, { "F#5", Properties.Resources.Piano_Gb5 },
+            { "Gb5", Properties.Resources.Piano_Gb5 }, { "G5", Properties.Resources.Piano_G5 }, { "G#5", Properties.Resources.Piano_Ab5 },
+            { "Ab5", Properties.Resources.Piano_Ab5 }, { "A5", Properties.Resources.Piano_A5 }, { "A#5", Properties.Resources.Piano_Bb5 },
+            { "Bb5", Properties.Resources.Piano_Bb5 }, { "B5", Properties.Resources.Piano_B5 },
+            { "C6", Properties.Resources.Piano_C6 }, { "C#6", Properties.Resources.Piano_Db6 },
+            { "Db6", Properties.Resources.Piano_Db6 }, { "D6", Properties.Resources.Piano_D6 }, { "D#6", Properties.Resources.Piano_Eb6 },
+            { "Eb6", Properties.Resources.Piano_Eb6 }, { "E6", Properties.Resources.Piano_E6 },
+            { "F6", Properties.Resources.Piano_F6 }, { "F#6", Properties.Resources.Piano_Gb6 },
+            { "Gb6", Properties.Resources.Piano_Gb6 }, { "G6", Properties.Resources.Piano_G6 }, { "G#6", Properties.Resources.Piano_Ab6 },
+            { "Ab6", Properties.Resources.Piano_Ab6 }, { "A6", Properties.Resources.Piano_A6 }, { "A#6", Properties.Resources.Piano_Bb6 },
+            { "Bb6", Properties.Resources.Piano_Bb6 }, { "B6", Properties.Resources.Piano_B6 },
+            { "C7", Properties.Resources.Piano_C7 }, { "C#7", Properties.Resources.Piano_Db7 },
+            { "Db7", Properties.Resources.Piano_Db7 }, { "D7", Properties.Resources.Piano_D7 }, { "D#7", Properties.Resources.Piano_Eb7 },
+            { "Eb7", Properties.Resources.Piano_Eb7 }, { "E7", Properties.Resources.Piano_E7 },
+            { "F7", Properties.Resources.Piano_F7 }, { "F#7", Properties.Resources.Piano_Gb7 },
+            { "Gb7", Properties.Resources.Piano_Gb7 }, { "G7", Properties.Resources.Piano_G7 }, { "G#7", Properties.Resources.Piano_Ab7 },
+            { "Ab7", Properties.Resources.Piano_Ab7 }, { "A7", Properties.Resources.Piano_A7 }, { "A#7", Properties.Resources.Piano_Bb7 },
+            { "Bb7", Properties.Resources.Piano_Bb7 }, { "B7", Properties.Resources.Piano_B7 },
+            { "C8", Properties.Resources.Piano_C8 }
         };
 
         /// <summary>
@@ -90,7 +90,9 @@ namespace ProgramCodes
         /// <param name="bpm">Beats per minute to play at</param>
         public static async void PlayNote(string note, string noteType, int bpm)
         {
-            SoundPlayer sound = new SoundPlayer("./Piano/" + NoteToActualNote[note] + ".wav");
+            System.IO.Stream noteToPlay = NoteToResource[note];
+            noteToPlay.Position = 0;
+            SoundPlayer sound = new SoundPlayer(noteToPlay);
             sound.Play();
             await Task.Delay(Music.GetPeriod(noteType, bpm));
             sound.Stop();
@@ -199,7 +201,7 @@ namespace ProgramCodes
             }
             else if (song == Songs.MaryHadALittleLamb)
             {
-                PlayMaryHadALittleLamb(120, Instrument.ConsoleBeep);
+                PlayMaryHadALittleLamb(120, Instrument.Piano);
             }
         }
 

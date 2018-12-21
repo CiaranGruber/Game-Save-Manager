@@ -45,7 +45,282 @@
     <Compile Include="General Utilities.cs" />
     <Compile Include="Music.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Save.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\A0.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\A1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\A2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\A3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\A4.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\A5.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\A7.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Ab1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Ab2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Ab3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Ab4.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Ab5.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Ab6.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Ab7.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\B0.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\B1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\B2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\B3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\B4.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\B5.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\B7.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Bb0.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Bb1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Bb2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Bb3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Bb4.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Bb5.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Bb6.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Bb7.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\C1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\C2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\C3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\C4.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\C5.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\C6.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\C7.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\C8.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\D1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\D2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\D3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\D4.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\D5.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\D6.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\D7.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Db1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Db2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Db3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Db4.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Db5.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Db6.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Db7.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\E1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\E2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\E3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\E4.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\E5.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\E6.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\E7.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Eb1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Eb2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Eb3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Eb4.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Eb5.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Eb6.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Eb7.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\F1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\F2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\F3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\F4.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\F5.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\F6.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\F7.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\G1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\G2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\G3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\G4.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\G5.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\G6.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\G7.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Gb1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Gb2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Gb3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Gb4.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Gb5.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Gb6.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\Gb7.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\A6.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Piano\B6.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

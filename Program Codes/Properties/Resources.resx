@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Piano_A0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\A0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_A1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\A1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_A2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\A2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_A3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\A3.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_A4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\A4.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_A5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\A5.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_A6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\A6.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_A7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\A7.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Ab1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Ab1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Ab2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Ab2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Ab3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Ab3.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Ab4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Ab4.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Ab5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Ab5.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Ab6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Ab6.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Ab7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Ab7.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_B0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\B0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_B1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\B1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_B2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\B2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_B3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\B3.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_B4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\B4.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_B5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\B5.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_B6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\B6.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_B7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\B7.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Bb0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Bb0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Bb1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Bb1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Bb2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Bb2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Bb3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Bb3.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Bb4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Bb4.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Bb5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Bb5.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Bb6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Bb6.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Bb7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Bb7.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_C1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\C1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_C2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\C2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_C3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\C3.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_C4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\C4.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_C5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\C5.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_C6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\C6.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_C7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\C7.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_C8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\C8.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_D1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\D1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_D2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\D2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_D3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\D3.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_D4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\D4.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_D5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\D5.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_D6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\D6.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_D7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\D7.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Db1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Db1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Db2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Db2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Db3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Db3.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Db4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Db4.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Db5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Db5.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Db6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Db6.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Db7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Db7.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_E1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\E1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_E2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\E2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_E3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\E3.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_E4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\E4.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_E5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\E5.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_E6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\E6.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_E7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\E7.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Eb1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Eb1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Eb2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Eb2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Eb3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Eb3.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Eb4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Eb4.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Eb5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Eb5.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Eb6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Eb6.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Eb7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Eb7.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_F1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\F1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_F2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\F2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_F3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\F3.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_F4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\F4.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_F5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\F5.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_F6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\F6.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_F7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\F7.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_G1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\G1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_G2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\G2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_G3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\G3.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_G4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\G4.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_G5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\G5.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_G6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\G6.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_G7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\G7.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Gb1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Gb1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Gb2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Gb2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Gb3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Gb3.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Gb4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Gb4.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Gb5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Gb5.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Gb6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Gb6.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano_Gb7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piano\Gb7.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>
