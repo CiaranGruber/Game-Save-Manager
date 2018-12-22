@@ -201,7 +201,7 @@ namespace ProgramCodes
             }
             else if (song == Songs.MaryHadALittleLamb)
             {
-                PlayMaryHadALittleLamb(120, Instrument.Piano);
+                PlayMaryHadALittleLamb(120, Instrument.ConsoleBeep);
             }
         }
 
