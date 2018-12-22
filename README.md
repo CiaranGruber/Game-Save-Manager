@@ -1,4 +1,4 @@
-# Game-Save-Manager
+# Game Save Manager
 
 This program allows you to manage a selection of game saves which use text-based saves. 
 Each save has various settings available such as notes, a title, favourited status, etc
