@@ -96,6 +96,7 @@ namespace ProgramCodes
             sound.Play();
             await Task.Delay(Music.GetPeriod(noteType, bpm));
             sound.Stop();
+            sound.Dispose();
         }
     }
 
@@ -197,11 +198,11 @@ namespace ProgramCodes
         {
             if (song == Songs.FurElise)
             {
-                PlayFurElise(120, Instrument.ConsoleBeep);
+                PlayFurElise(60, Instrument.Piano);
             }
             else if (song == Songs.MaryHadALittleLamb)
             {
-                PlayMaryHadALittleLamb(120, Instrument.ConsoleBeep);
+                PlayMaryHadALittleLamb(120, Instrument.Piano);
             }
         }
 
@@ -214,7 +215,7 @@ namespace ProgramCodes
         {
             if (song == Songs.FurElise)
             {
-                PlayFurElise(120, instrument);
+                PlayFurElise(60, instrument);
             }
             else if (song == Songs.MaryHadALittleLamb)
             {

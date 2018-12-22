@@ -10,7 +10,7 @@ namespace ProgramCodes
     public static class GeneralUtils
     {
         /// <summary>
-        /// Returns the size of ICollections or -1 if they are not an ICollection 
+        /// Returns the size of ICollections or -1 if they are not an ICollection
         /// </summary>
         /// <param name="theObject">The object that is being tested</param>
         /// <returns>The size of the object = (-1 if not an ICollection)</returns>
