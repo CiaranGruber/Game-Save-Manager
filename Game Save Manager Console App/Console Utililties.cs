@@ -121,7 +121,9 @@ namespace GameSaveManagerConsoleApp
         /// <summary>Gets or sets the Y co-ordinate</summary>
         public int Y { get; set; }
 
-        /// <summary>Sets the location with the cursor's co-ordinates</summary>
+        /// <summary>
+        /// Sets the location with the cursor's co-ordinates
+        /// </summary>
         public Location()
         {
             X = Console.CursorLeft;
@@ -791,6 +793,8 @@ namespace GameSaveManagerConsoleApp
         {
             Console.Clear();
             FormattedWrite(title, new FormattedWriteSettings() { TextAlignment = Alignment.Centre, InnerPadding = new Padding(1, 0, 0) });
+
+            // Adds the line if it is included
             if (lineIncluded)
             {
                 FormattedWrite("".PadLeft(Console.WindowWidth, '_'), new FormattedWriteSettings() { InnerPadding = new Padding(0, 0, 2) });
@@ -837,8 +841,12 @@ namespace GameSaveManagerConsoleApp
         public static void CreateMenu(ICollection menuOptions, string menuTitle, FormattedWriteSettings menuWriteSettings, FormattedWriteSettings optionsWriteSettings)
         {
             int menuIndex = 1;
+
+            // Writes the title
             FormattedWrite(menuTitle, menuWriteSettings);
             menuWriteSettings.Location.Y += 1;
+
+            // Writes each menu option
             foreach (object menuOption in menuOptions)
             {
                 FormattedWrite(menuIndex + ". " + menuOption.ToString(), menuWriteSettings);
@@ -1021,6 +1029,7 @@ namespace GameSaveManagerConsoleApp
         {
             Location originalCursorPosition = new Location();
 
+            // Gets the required horizontal width depending on original width, padding and border sizes
             int horizontalWidth = bottomRight.X - topLeft.X + padding.Left + padding.Right;
             if (borders.LeftEnabled)
             {

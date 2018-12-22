@@ -22,19 +22,23 @@ namespace GameSaveManager
 
         public GameSettings(string gameName)
         {
+            // Starts up the form
             NavigationClass.SaveNextForm(new string[] { "Display Screen" });
-
-            gameIndex = FormNav.ScreenCode.Games.FindIndex(x => x.Name == gameName);
-            game = FormNav.ScreenCode.Games[gameIndex];
             InitializeComponent();
             CenterToScreen();
+            RefreshSaves();
+
+            // Sets the global variables
+            gameIndex = FormNav.ScreenCode.Games.FindIndex(x => x.Name == gameName);
+            game = FormNav.ScreenCode.Games[gameIndex];
         }
 
         private void GameSettings_Load(object sender, EventArgs e)
         {
+            // Refreshes everything
             lbl_title.Text = game.Name + " Settings";
-            RefreshSaves();
 
+            // Resets the music settings
             ResetMusicImage();
             CheckMusicThread = new Thread(() => CheckMusic());
             CheckMusicThread.Start();
@@ -43,9 +47,12 @@ namespace GameSaveManager
         private void CheckMusic()
         {
             string outdatedSong = FormNav.CurrentSong;
+
+            // Sets the label for displaying the current music
             lbl_musicChoice.SetPropertyThreadSafe(() => lbl_musicChoice.Text, "Music: " + FormNav.CurrentSong);
             while (true)
             {
+                // If the music has changed (checked every 500ms), change the label as well
                 if (outdatedSong != FormNav.CurrentSong)
                 {
                     lbl_musicChoice.SetPropertyThreadSafe(() => lbl_musicChoice.Text, "Music: " + FormNav.CurrentSong);
@@ -57,6 +64,7 @@ namespace GameSaveManager
 
         private void ResetMusicImage()
         {
+            // Sets the music image to muted/unmuted depending on if a song is being played
             if (FormNav.CurrentSong != "None")
             {
                 img_musicControl.Image = Properties.Resources.Music_Unmuted;
@@ -78,6 +86,7 @@ namespace GameSaveManager
         {
             pnl_gamesPanel.Controls.Clear();
             
+            // Reiterates through each save
             foreach (Save save in game.Saves)
             {
                 Panel savePanel = new Panel();
@@ -88,9 +97,11 @@ namespace GameSaveManager
                 Button viewSave = new Button();
                 Button editSave = new Button();
 
+                // Sets the properties of the save panel
                 savePanel.Dock = DockStyle.Top;
                 savePanel.Height = 50;
 
+                // Sets the favouriting box settings
                 if (save.Favourited)
                 {
                     favouriteBox.Image = Properties.Resources.Favourited;
@@ -105,6 +116,7 @@ namespace GameSaveManager
                 favouriteBox.Click += favouritedBox_Click;
                 favouriteBox.Dock = DockStyle.Left;
 
+                // Sets the edit/view save button properties
                 editSave.Text = "Edit Save";
                 editSave.Width = 100;
                 editSave.Name = save.Date.ToString(Save.Culture);
@@ -117,6 +129,7 @@ namespace GameSaveManager
                 viewSave.Click += viewSave_Click;
                 viewSave.Dock = DockStyle.Right;
 
+                // Sets the details panel which fills the remaining space
                 detailsPanel.Dock = DockStyle.Fill;
 
                 detailsPanel.ColumnCount = 1;
@@ -127,6 +140,7 @@ namespace GameSaveManager
                 detailsPanel.Controls.Add(new Label() { Text = save.Title }, 0, 0);
                 detailsPanel.Controls.Add(new Label() { Text = save.Date.ToString() }, 0, 1);
 
+                // Adds the controls
                 savePanel.Controls.Add(detailsPanel);
                 savePanel.Controls.Add(viewSave);
                 savePanel.Controls.Add(editSave);
@@ -159,11 +173,10 @@ namespace GameSaveManager
         private void favouritedBox_Click(object sender, EventArgs e)
         {
             PictureBox control = sender as PictureBox;
-            int saveIndex = FormNav.ScreenCode.Games[gameIndex].Saves.FindIndex(x => x.Date.ToString(Save.Culture) == control.Name);
 
-            FormNav.ScreenCode.Games[gameIndex].Saves[saveIndex].Favourited = FormNav.ScreenCode.Games[gameIndex].Saves[saveIndex].Favourited == false;
+            FormNav.ScreenCode.Games[gameIndex].ChangeFavouriteStatus(control.Name);
 
-            if (FormNav.ScreenCode.Games[gameIndex].Saves[saveIndex].Favourited)
+            if (FormNav.ScreenCode.Games[gameIndex].Saves[FormNav.ScreenCode.Games[gameIndex].Saves.FindIndex(x => x.Date.ToString(Save.Culture) == control.Name)].Favourited)
             {
                 control.Image = Properties.Resources.Favourited;
             }

@@ -13,6 +13,16 @@ namespace GameSaveManager
     {
         private delegate void SetPropertyThreadSafeDelegate<TResult>(Control @this, Expression<Func<TResult>> property, TResult value);
 
+        /// <summary>
+        /// <para>Sets the property of a control from a thread where the control *does not* originate.</para>
+        /// <para>This was taken from the internet. Call similar to:</para>
+        /// <para>myControl.SetPropertyThreadSafe(() => myControl.myProperty, resultingValue)</para>
+        /// <see cref="https://stackoverflow.com/a/661706" />
+        /// </summary>
+        /// <typeparam name="TResult">The type of the property</typeparam>
+        /// <param name="this">The control that is being used</param>
+        /// <param name="property">The expression for the property to be changed</param>
+        /// <param name="value">The value that the propety is the be changed to</param>
         public static void SetPropertyThreadSafe<TResult>(this Control @this, Expression<Func<TResult>> property, TResult value)
         {
             var propertyInfo = (property.Body as MemberExpression).Member as PropertyInfo;

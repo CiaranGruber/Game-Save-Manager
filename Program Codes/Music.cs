@@ -24,7 +24,7 @@ namespace ProgramCodes
     public static class Piano
     {
         /// <summary>
-        /// Contains note to frequencies
+        /// Contains the notes and their relative resources
         /// </summary>
         public static Dictionary<string, System.IO.UnmanagedMemoryStream> NoteToResource = new Dictionary<string, System.IO.UnmanagedMemoryStream>()
         {
@@ -102,7 +102,7 @@ namespace ProgramCodes
     public static class ConsoleBeep
     {
         /// <summary>
-        /// Contains note to frequencies
+        /// Contains notes and their frequencies
         /// </summary>
         public static Dictionary<string, int> NoteToFrequency = new Dictionary<string, int>()
         {
@@ -241,7 +241,7 @@ namespace ProgramCodes
         }
 
         /// <summary>
-        /// Plays a note depending on the instrument chosen
+        /// Plays a selection of notes depending on the instrument chosen
         /// </summary>
         /// <param name="note">The note/s to be played (separate multiple with, '/')</param>
         /// <param name="notePeriod">The type of note (depending on length). Separate multiple periods with, '/'</param>
@@ -253,18 +253,21 @@ namespace ProgramCodes
             string[] notes = note.Split('/');
             string[] notePeriods = notePeriod.Split('/');
 
+            // If the instrument is the console beep, only play the first one
             if (instrument == Instrument.ConsoleBeep)
             {
                 ConsoleBeep.PlayNote(notes[0], notePeriods[0], bpm);
             }
             else
             {
+                // Starts each note in the given notes
                 for (int i = 0; i < notes.Length; i++)
                 {
                     if (instrument == Instrument.Piano)
                     {
                         Piano.PlayNote(notes[i], notePeriods[notePeriodIndex], bpm);
                     }
+                    // Only adds the notePeriod index if there is enough to choose from (the last will be used if there are too many notes)
                     if (notePeriodIndex < notePeriods.Length)
                     {
                         notePeriodIndex++;
@@ -281,6 +284,7 @@ namespace ProgramCodes
         /// <returns>The requested time</returns>
         public static int GetPeriod(string notePeriod, int bpm)
         {
+            // If there the notePeriod is not contained, there may be multiple note periods included
             if (LengthToInterval.ContainsKey(notePeriod))
             {
                 return (int)(LengthToInterval[notePeriod] * 60000 / bpm);
@@ -289,6 +293,7 @@ namespace ProgramCodes
             string[] notePeriods = notePeriod.Split('+');
             double totalLength = 0;
 
+            // Adds the length of each peiod to the total
             foreach (string period in notePeriods)
             {
                 totalLength += LengthToInterval[period] * 60000 / bpm;
@@ -319,6 +324,7 @@ namespace ProgramCodes
         /// <param name="instrument">The instrument that is used</param>
         public static void Rest(string notePeriod, int bpm, Instrument instrument)
         {
+            // Although this could be replaced with the below code, if any changes are required, this allows for changes
             Thread.Sleep(GetPeriod(notePeriod, bpm));
         }
 

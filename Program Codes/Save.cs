@@ -94,6 +94,8 @@ namespace ProgramCodes
             {
                 return false;
             }
+
+            // Check every property to make sure they are all equal
             if (newSave.Title != Title || newSave.Date.ToString() != Date.ToString() || newSave.Favourited != Favourited || newSave.SaveData != SaveData || !newSave.Notes.SequenceEqual(Notes))
             {
                 return false;

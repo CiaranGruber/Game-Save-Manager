@@ -24,14 +24,16 @@ namespace GameSaveManager
 
         public EditSave(string gameName, string saveDate)
         {
+            // Start up the form
             NavigationClass.SaveNextForm(new string[] { "Game Settings", gameName });
             InitializeComponent();
             splt_saveAndNotes.SplitterWidth = 16;
             splt_saveAndNotes.SplitterDistance = splt_saveAndNotes.Height / 2;
             CenterToScreen();
+
+            // Get the global variables
             GameIndex = FormNav.ScreenCode.Games.FindIndex(x => x.Name == gameName);
             SaveIndex = FormNav.ScreenCode.Games[GameIndex].Saves.FindIndex(x => x.Date.ToString(Save.Culture) == saveDate);
-
             if (SaveIndex == -1)
             {
                 Save = new Save("Save " + FormNav.ScreenCode.Games[GameIndex].Saves.Count + 1, null, false, "", new string[] { });
@@ -41,14 +43,7 @@ namespace GameSaveManager
                 Save = FormNav.ScreenCode.Games[GameIndex].Saves[SaveIndex];
             }
 
-            if (FormNav.CurrentSong != "")
-            {
-                img_musicControl.Image = Properties.Resources.Music_Unmuted;
-            }
-            else
-            {
-                img_musicControl.Image = Properties.Resources.Music_Muted;
-            }
+            // Sets the favourited status
             if (Save.Favourited)
             {
                 img_favourited.Image = Properties.Resources.Favourited;
@@ -61,12 +56,14 @@ namespace GameSaveManager
 
         private void EditSave_Load(object sender, EventArgs e)
         {
+            // Sets the current given values
             lbl_title.Text = Save.Title;
             txt_saveName.Lines = new string[] { Save.Title };
             txt_saveData.Lines = new string[] { Save.SaveData };
             txt_notes.Lines = Save.Notes;
             CheckValidity();
-
+            
+            // Resets the music and starts up the music thread
             ResetMusicImage();
             CheckMusicThread = new Thread(() => CheckMusic());
             CheckMusicThread.Start();
@@ -75,9 +72,12 @@ namespace GameSaveManager
         private void CheckMusic()
         {
             string outdatedSong = FormNav.CurrentSong;
+
+            // Sets the label for displaying the current music
             lbl_musicChoice.SetPropertyThreadSafe(() => lbl_musicChoice.Text, "Music: " + FormNav.CurrentSong);
             while (true)
             {
+                // If the music has changed (checked every 500ms), change the label as well
                 if (outdatedSong != FormNav.CurrentSong)
                 {
                     lbl_musicChoice.SetPropertyThreadSafe(() => lbl_musicChoice.Text, "Music: " + FormNav.CurrentSong);
@@ -89,6 +89,7 @@ namespace GameSaveManager
 
         private void ResetMusicImage()
         {
+            // Sets the music image to muted/unmuted depending on if a song is being played
             if (FormNav.CurrentSong != "None")
             {
                 img_musicControl.Image = Properties.Resources.Music_Unmuted;
@@ -113,6 +114,7 @@ namespace GameSaveManager
 
         private void txt_saveName_TextChanged(object sender, EventArgs e)
         {
+            // Sets the title to the saveName and also the Save itself
             if (txt_saveName.Lines.Length > 0)
             {
                 lbl_title.Text = txt_saveName.Lines[0];
@@ -123,6 +125,8 @@ namespace GameSaveManager
                 lbl_title.Text = "";
                 Save.Title = "";
             }
+
+            // Checks the validity and allows the user to save depending on this
             CheckValidity();
         }
 
@@ -142,6 +146,7 @@ namespace GameSaveManager
 
         private void btn_saveToCollection_Click(object sender, EventArgs e)
         {
+            // Saves the current save to the collection by adding or editing it
             if (Save.Date == DateTime.MinValue)
             {
                 FormNav.ScreenCode.Games[GameIndex].AddSave(new Save(Save.Title, DateTime.Now.ToString(Save.Culture), Save.Favourited, Save.SaveData, Save.Notes));
@@ -161,6 +166,7 @@ namespace GameSaveManager
 
         private void txt_saveData_TextChanged(object sender, EventArgs e)
         {
+            // Restricts textbox to one line and also sets to saveData
             if (txt_saveData.Lines.Length > 1)
             {
                 txt_saveData.Lines = new string[] { string.Join("", txt_saveData.Lines) };
@@ -174,6 +180,8 @@ namespace GameSaveManager
             {
                 Save.SaveData = "";
             }
+
+            // Checks the validity and allows the user to save depending on this
             CheckValidity();
         }
 

@@ -94,6 +94,7 @@ namespace GameSaveManager
 
         public static void ChangeMusicState()
         {
+            // Either aborts the music thread or starts it up
             if (ExtraMusic.ThreadState == ThreadState.Aborted)
             {
                 Random rand = new Random();

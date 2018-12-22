@@ -35,18 +35,17 @@ namespace ProgramCodes
         /// <summary>Loads everything from the location saved</summary>
         public void Load()
         {
-            if (!File.Exists(SaveLocation))
-            {
-                File.WriteAllText(SaveLocation, "");
-            }
-            Load(File.ReadAllLines(SaveLocation));
+            Load(SaveLocation);
         }
 
         /// <summary>Loads everything from a save file in a specific location</summary>
         /// <param name="saveLocation">The location of the save</param>
         public void Load(string saveLocation)
         {
-            
+            if (!File.Exists(saveLocation))
+            {
+                File.WriteAllText(saveLocation, "");
+            }
             Load(File.ReadAllLines(saveLocation));
         }
 

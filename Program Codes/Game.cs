@@ -153,6 +153,7 @@ namespace ProgramCodes
         /// <returns>The <c>Game</c> as a readable string</returns>
         public override string ToString()
         {
+            // Decides between plural or non-plural form of save
             if (Saves.Count == 1)
             {
                 return Name + ": 1 save (" + Link + ")";

@@ -18,6 +18,7 @@ namespace GameSaveManager
 
         public DisplayScreen()
         {
+            // Start up the form
             NavigationClass.SaveNextForm(new string[] { "null" });
             InitializeComponent();
             CenterToScreen();
@@ -28,6 +29,7 @@ namespace GameSaveManager
         {
             RefreshAll();
 
+            // Resets the music settings
             ResetMusicImage();
             CheckMusicThread = new Thread(() => CheckMusic());
             CheckMusicThread.Start();
@@ -36,9 +38,12 @@ namespace GameSaveManager
         private void CheckMusic()
         {
             string outdatedSong = FormNav.CurrentSong;
+
+            // Sets the label for displaying the current music
             lbl_musicChoice.SetPropertyThreadSafe(() => lbl_musicChoice.Text, "Music: " + FormNav.CurrentSong);
             while (true)
             {
+                // If the music has changed (checked every 500ms), change the label as well
                 if (outdatedSong != FormNav.CurrentSong)
                 {
                     lbl_musicChoice.SetPropertyThreadSafe(() => lbl_musicChoice.Text, "Music: " + FormNav.CurrentSong);
@@ -50,6 +55,7 @@ namespace GameSaveManager
 
         private void ResetMusicImage()
         {
+            // Sets the music image to muted/unmuted depending on if a song is being played
             if (FormNav.CurrentSong != "None")
             {
                 img_musicControl.Image = Properties.Resources.Music_Unmuted;
@@ -110,6 +116,7 @@ namespace GameSaveManager
 
         private void btn_gameSettings_Click(object sender, EventArgs e)
         {
+            // Only closes if something is selected
             if (cBo_gameSelector.SelectedItem != null)
             {
                 NavigationClass.SaveNextForm(new string[] { "Game Settings", cBo_gameSelector.SelectedItem.ToString() });

@@ -20,14 +20,17 @@ namespace GameSaveManager
 
         public ViewSave(string gameName, string saveDate)
         {
+            // Start up form
             InitializeComponent();
             CenterToScreen();
             NavigationClass.SaveNextForm(new string[] { "Game Settings", gameName });
 
+            // Set the public variables for the save
             int gameIndex = FormNav.ScreenCode.Games.FindIndex(x => x.Name == gameName);
             SaveIndex = FormNav.ScreenCode.Games[gameIndex].Saves.FindIndex(x => x.Date.ToString(Save.Culture) == saveDate);
             Save = FormNav.ScreenCode.Games[gameIndex].Saves[SaveIndex];
 
+            // Resets the music image and starts a new thread for the music
             ResetMusicImage();
             CheckMusicThread = new Thread(() => CheckMusic());
             CheckMusicThread.Start();
@@ -35,6 +38,7 @@ namespace GameSaveManager
 
         private void ViewSave_Load(object sender, EventArgs e)
         {
+            // Sets all the values for the save
             lbl_title.Text = Save.Title;
             lbl_dateCreated.Text = "Date Created: " + Save.Date.ToString(Save.Culture);
             txt_saveData.Lines = new string[] { Save.SaveData };
@@ -58,9 +62,12 @@ namespace GameSaveManager
         private void CheckMusic()
         {
             string outdatedSong = FormNav.CurrentSong;
+
+            // Sets the label for displaying the current music
             lbl_musicChoice.SetPropertyThreadSafe(() => lbl_musicChoice.Text, "Music: " + FormNav.CurrentSong);
             while (true)
             {
+                // If the music has changed (checked every 500ms), change the label as well
                 if (outdatedSong != FormNav.CurrentSong)
                 {
                     lbl_musicChoice.SetPropertyThreadSafe(() => lbl_musicChoice.Text, "Music: " + FormNav.CurrentSong);
@@ -72,6 +79,7 @@ namespace GameSaveManager
 
         private void ResetMusicImage()
         {
+            // Sets the music image to muted/unmuted depending on if a song is being played
             if (FormNav.CurrentSong != "None")
             {
                 img_musicControl.Image = Properties.Resources.Music_Unmuted;
