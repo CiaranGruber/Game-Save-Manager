@@ -269,7 +269,7 @@ namespace ProgramCodes
                         Piano.PlayNote(notes[i], notePeriods[notePeriodIndex], bpm);
                     }
                     // Only adds the notePeriod index if there is enough to choose from (the last will be used if there are too many notes)
-                    if (notePeriodIndex < notePeriods.Length)
+                    if (notePeriodIndex < notePeriods.Length - 1)
                     {
                         notePeriodIndex++;
                     }
@@ -313,7 +313,7 @@ namespace ProgramCodes
         {
             if (instrument != Instrument.ConsoleBeep)
             {
-                Thread.Sleep(GetPeriod(notePeriod, bpm));
+                Thread.Sleep(GetPeriod(notePeriod, bpm * 9 / 10));
             }
         }
 
@@ -2334,29 +2334,29 @@ namespace ProgramCodes
         /// <param name="instrument">The instrument to be used</param>
         public static void PlayFurElise(int bpm, Instrument instrument)
         {
-            Thread leftHand = new Thread(() => PlayFurEliseLeftHand(bpm, instrument));
+            //Thread leftHand = new Thread(() => PlayFurEliseLeftHand(bpm, instrument));
             Thread rightHand = new Thread(() => PlayFurEliseRightHand(bpm, instrument));
             try
             {
-                if (instrument != Instrument.ConsoleBeep)
-                {
-                    leftHand.Start();
-                }
-                else
-                {
-                    leftHand.Abort();
-                }
+                //if (instrument != Instrument.ConsoleBeep)
+                //{
+                //    leftHand.Start();
+                //}
+                //else
+                //{
+                //    leftHand.Abort();
+                //}
                 rightHand.Start();
                 rightHand.Join();
-                try
-                {
-                    leftHand.Join();
-                }
-                catch { }
+                //try
+                //{
+                //    leftHand.Join();
+                //}
+                //catch { }
             }
             catch (Exception ex) when (ex is ThreadAbortException || ex is ThreadInterruptedException)
             {
-                leftHand.Abort();
+                //leftHand.Abort();
                 rightHand.Abort();
             }
         }
