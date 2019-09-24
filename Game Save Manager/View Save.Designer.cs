@@ -36,26 +36,20 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_saveNumber = new System.Windows.Forms.Label();
             this.img_favourited = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.lbl_dateCreated = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.pnl_body = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.txt_saveData = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.lbl_saveDataTitle = new System.Windows.Forms.Label();
+            this.txt_notes = new System.Windows.Forms.TextBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.lbl_notesTitle = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.txt_notes = new System.Windows.Forms.TextBox();
             this.pnl_header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.img_musicControl)).BeginInit();
             this.pnl_title.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.img_favourited)).BeginInit();
-            this.panel3.SuspendLayout();
             this.pnl_body.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -133,6 +127,7 @@
             this.lbl_saveNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_saveNumber.Location = new System.Drawing.Point(75, 0);
             this.lbl_saveNumber.Name = "lbl_saveNumber";
+            this.lbl_saveNumber.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.lbl_saveNumber.Size = new System.Drawing.Size(457, 75);
             this.lbl_saveNumber.TabIndex = 1;
             this.lbl_saveNumber.Text = "Save Number:";
@@ -148,14 +143,6 @@
             this.img_favourited.TabIndex = 0;
             this.img_favourited.TabStop = false;
             // 
-            // panel2
-            // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 468);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(532, 10);
-            this.panel2.TabIndex = 6;
-            // 
             // lbl_dateCreated
             // 
             this.lbl_dateCreated.Dock = System.Windows.Forms.DockStyle.Top;
@@ -166,32 +153,21 @@
             this.lbl_dateCreated.Text = "Date Created: ";
             this.lbl_dateCreated.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.pnl_body);
-            this.panel3.Controls.Add(this.panel5);
-            this.panel3.Controls.Add(this.panel4);
-            this.panel3.Controls.Add(this.panel10);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 142);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(532, 326);
-            this.panel3.TabIndex = 8;
-            // 
             // pnl_body
             // 
             this.pnl_body.AutoScroll = true;
             this.pnl_body.Controls.Add(this.splitContainer1);
             this.pnl_body.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_body.Location = new System.Drawing.Point(50, 50);
+            this.pnl_body.Location = new System.Drawing.Point(0, 142);
             this.pnl_body.Name = "pnl_body";
-            this.pnl_body.Size = new System.Drawing.Size(432, 276);
-            this.pnl_body.TabIndex = 3;
+            this.pnl_body.Padding = new System.Windows.Forms.Padding(50, 50, 50, 5);
+            this.pnl_body.Size = new System.Drawing.Size(532, 336);
+            this.pnl_body.TabIndex = 8;
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Location = new System.Drawing.Point(50, 50);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -208,8 +184,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.txt_notes);
             this.splitContainer1.Panel2.Controls.Add(this.panel7);
             this.splitContainer1.Panel2.Controls.Add(this.lbl_notesTitle);
-            this.splitContainer1.Size = new System.Drawing.Size(432, 276);
-            this.splitContainer1.SplitterDistance = 110;
+            this.splitContainer1.Size = new System.Drawing.Size(432, 281);
+            this.splitContainer1.SplitterDistance = 111;
             this.splitContainer1.SplitterWidth = 10;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -224,7 +200,7 @@
             this.txt_saveData.ReadOnly = true;
             this.txt_saveData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txt_saveData.ShortcutsEnabled = false;
-            this.txt_saveData.Size = new System.Drawing.Size(432, 77);
+            this.txt_saveData.Size = new System.Drawing.Size(432, 78);
             this.txt_saveData.TabIndex = 5;
             this.txt_saveData.Text = "Save Data Description";
             // 
@@ -247,6 +223,21 @@
             this.lbl_saveDataTitle.Text = "Save Data";
             this.lbl_saveDataTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // txt_notes
+            // 
+            this.txt_notes.BackColor = System.Drawing.SystemColors.Control;
+            this.txt_notes.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_notes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txt_notes.Location = new System.Drawing.Point(0, 33);
+            this.txt_notes.Multiline = true;
+            this.txt_notes.Name = "txt_notes";
+            this.txt_notes.ReadOnly = true;
+            this.txt_notes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txt_notes.ShortcutsEnabled = false;
+            this.txt_notes.Size = new System.Drawing.Size(432, 127);
+            this.txt_notes.TabIndex = 6;
+            this.txt_notes.Text = "Notes";
+            // 
             // panel7
             // 
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
@@ -266,53 +257,13 @@
             this.lbl_notesTitle.Text = "Notes on Save";
             this.lbl_notesTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel5
-            // 
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(482, 50);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(50, 276);
-            this.panel5.TabIndex = 2;
-            // 
-            // panel4
-            // 
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(0, 50);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(50, 276);
-            this.panel4.TabIndex = 1;
-            // 
-            // panel10
-            // 
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel10.Location = new System.Drawing.Point(0, 0);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(532, 50);
-            this.panel10.TabIndex = 0;
-            // 
-            // txt_notes
-            // 
-            this.txt_notes.BackColor = System.Drawing.SystemColors.Control;
-            this.txt_notes.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_notes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txt_notes.Location = new System.Drawing.Point(0, 33);
-            this.txt_notes.Multiline = true;
-            this.txt_notes.Name = "txt_notes";
-            this.txt_notes.ReadOnly = true;
-            this.txt_notes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txt_notes.ShortcutsEnabled = false;
-            this.txt_notes.Size = new System.Drawing.Size(432, 123);
-            this.txt_notes.TabIndex = 6;
-            this.txt_notes.Text = "Notes";
-            // 
             // ViewSave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 553);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.pnl_body);
             this.Controls.Add(this.lbl_dateCreated);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnl_title);
             this.Controls.Add(this.pnl_header);
@@ -325,7 +276,6 @@
             this.pnl_title.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.img_favourited)).EndInit();
-            this.panel3.ResumeLayout(false);
             this.pnl_body.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -347,19 +297,14 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbl_saveNumber;
         private System.Windows.Forms.PictureBox img_favourited;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lbl_dateCreated;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel pnl_body;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.TextBox txt_saveData;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label lbl_saveDataTitle;
+        private System.Windows.Forms.TextBox txt_notes;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label lbl_notesTitle;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.TextBox txt_saveData;
-        private System.Windows.Forms.TextBox txt_notes;
     }
 }

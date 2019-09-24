@@ -89,6 +89,9 @@
     <EmbeddedResource Include="Edit Save.resx">
       <DependentUpon>Edit Save.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form Navigation.resx">
+      <DependentUpon>Form Navigation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Game Settings.resx">
       <DependentUpon>Game Settings.cs</DependentUpon>
     </EmbeddedResource>

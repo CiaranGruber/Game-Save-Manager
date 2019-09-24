@@ -36,11 +36,11 @@ namespace GameSaveManager
             SaveIndex = FormNav.ScreenCode.Games[GameIndex].Saves.FindIndex(x => x.Date.ToString(Save.Culture) == saveDate);
             if (SaveIndex == -1)
             {
-                Save = new Save("Save " + FormNav.ScreenCode.Games[GameIndex].Saves.Count + 1, null, false, "", new string[] { });
+                Save = new Save("Save " + (FormNav.ScreenCode.Games[GameIndex].Saves.Count + 1), null, false, "", new string[] { });
             }
             else
             {
-                Save = FormNav.ScreenCode.Games[GameIndex].Saves[SaveIndex];
+                Save = new Save(FormNav.ScreenCode.Games[GameIndex].Saves[SaveIndex]);
             }
 
             // Sets the favourited status

@@ -63,6 +63,19 @@ namespace ProgramCodes
         }
 
         /// <summary>
+        /// Initialises a new <c>Save</c> instance by cloning the given <c>Save</c>
+        /// </summary>
+        /// <param name="save"></param>
+        public Save(Save save)
+        {
+            Title = save.Title;
+            Date = save.Date;
+            Favourited = save.Favourited;
+            SaveData = save.SaveData;
+            Notes = save.Notes; 
+        }
+
+        /// <summary>
         /// Returns the <c>Save</c> as a string array
         /// </summary>
         public string[] ToStringArray()

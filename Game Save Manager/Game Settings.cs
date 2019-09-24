@@ -16,27 +16,29 @@ namespace GameSaveManager
     {
         Thread CheckMusicThread;
 
-        public int gameIndex;
+        public int GameIndex;
 
-        public Game game;
+        public Game Game;
+
+        public TextBox changeNameText;
 
         public GameSettings(string gameName)
         {
+            // Sets up the game variables
+            GameIndex = FormNav.ScreenCode.Games.FindIndex(x => x.Name == gameName);
+            Game = FormNav.ScreenCode.Games[GameIndex];
+
             // Starts up the form
             NavigationClass.SaveNextForm(new string[] { "Display Screen" });
             InitializeComponent();
             CenterToScreen();
             RefreshSaves();
-
-            // Sets the global variables
-            gameIndex = FormNav.ScreenCode.Games.FindIndex(x => x.Name == gameName);
-            game = FormNav.ScreenCode.Games[gameIndex];
         }
 
         private void GameSettings_Load(object sender, EventArgs e)
         {
             // Refreshes everything
-            lbl_title.Text = game.Name + " Settings";
+            lbl_title.Text = Game.Name + " Settings";
 
             // Resets the music settings
             ResetMusicImage();
@@ -87,7 +89,7 @@ namespace GameSaveManager
             pnl_gamesPanel.Controls.Clear();
             
             // Reiterates through each save
-            foreach (Save save in game.Saves)
+            foreach (Save save in Game.Saves)
             {
                 Panel savePanel = new Panel();
                 TableLayoutPanel detailsPanel = new TableLayoutPanel();
@@ -96,6 +98,7 @@ namespace GameSaveManager
                 Label dateCreated = new Label();
                 Button viewSave = new Button();
                 Button editSave = new Button();
+                Button deleteSave = new Button();
 
                 // Sets the properties of the save panel
                 savePanel.Dock = DockStyle.Top;
@@ -118,16 +121,22 @@ namespace GameSaveManager
 
                 // Sets the edit/view save button properties
                 editSave.Text = "Edit Save";
-                editSave.Width = 100;
+                editSave.Width = 75;
                 editSave.Name = save.Date.ToString(Save.Culture);
                 editSave.Click += editSave_Click;
                 editSave.Dock = DockStyle.Right;
 
                 viewSave.Text = "View Save";
-                viewSave.Width = 100;
+                viewSave.Width = 75;
                 viewSave.Name = save.Date.ToString(Save.Culture);
                 viewSave.Click += viewSave_Click;
                 viewSave.Dock = DockStyle.Right;
+
+                deleteSave.Text = "Delete Save";
+                deleteSave.Width = 75;
+                deleteSave.Name = save.Date.ToString(Save.Culture);
+                deleteSave.Click += DeleteSave_Click;
+                deleteSave.Dock = DockStyle.Right;
 
                 // Sets the details panel which fills the remaining space
                 detailsPanel.Dock = DockStyle.Fill;
@@ -144,29 +153,40 @@ namespace GameSaveManager
                 savePanel.Controls.Add(detailsPanel);
                 savePanel.Controls.Add(viewSave);
                 savePanel.Controls.Add(editSave);
+                savePanel.Controls.Add(deleteSave);
                 savePanel.Controls.Add(favouriteBox);
 
                 pnl_gamesPanel.Controls.Add(savePanel);
             }
         }
 
+        private void DeleteSave_Click(object sender, EventArgs e)
+        {
+            Control control = sender as Control;
+            if (MessageBox.Show("Are you absolutely sure you want to delete this save?", "Delete Save", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Game.RemoveSave(control.Name);
+                RefreshSaves();
+            }
+        }
+
         private void viewSave_Click(object sender, EventArgs e)
         {
             Control control = sender as Control;
-            NavigationClass.SaveNextForm(new string[] { "View Save", game.Name, control.Name });
+            NavigationClass.SaveNextForm(new string[] { "View Save", Game.Name, control.Name });
             Close();
         }
 
         private void editSave_Click(object sender, EventArgs e)
         {
             Control control = sender as Control;
-            NavigationClass.SaveNextForm(new string[] { "Edit Save", game.Name, control.Name });
+            NavigationClass.SaveNextForm(new string[] { "Edit Save", Game.Name, control.Name });
             Close();
         }
 
         private void btn_addSave_Click(object sender, EventArgs e)
         {
-            NavigationClass.SaveNextForm(new string[] { "Edit Save", game.Name, "" });
+            NavigationClass.SaveNextForm(new string[] { "Edit Save", Game.Name, "" });
             Close();
         }
 
@@ -174,9 +194,9 @@ namespace GameSaveManager
         {
             PictureBox control = sender as PictureBox;
 
-            FormNav.ScreenCode.Games[gameIndex].ChangeFavouriteStatus(control.Name);
+            FormNav.ScreenCode.Games[GameIndex].ChangeFavouriteStatus(control.Name);
 
-            if (FormNav.ScreenCode.Games[gameIndex].Saves[FormNav.ScreenCode.Games[gameIndex].Saves.FindIndex(x => x.Date.ToString(Save.Culture) == control.Name)].Favourited)
+            if (FormNav.ScreenCode.Games[GameIndex].Saves[FormNav.ScreenCode.Games[GameIndex].Saves.FindIndex(x => x.Date.ToString(Save.Culture) == control.Name)].Favourited)
             {
                 control.Image = Properties.Resources.Favourited;
             }
@@ -189,6 +209,43 @@ namespace GameSaveManager
         private void GameSettings_FormClosing(object sender, FormClosingEventArgs e)
         {
             CheckMusicThread.Abort();
+        }
+
+        private void btn_changeName_Click(object sender, EventArgs e)
+        {
+            Form nameForm = new Form()
+            {
+                Text = "Type in new name",
+                AutoSize = true,
+                MinimizeBox = false,
+                MaximizeBox = false,
+                MinimumSize = new Size(200, 0),
+                AutoSizeMode = AutoSizeMode.GrowAndShrink
+            };
+
+            changeNameText = new TextBox()
+            {
+                Dock = DockStyle.Top
+            };
+
+            Button confirmButton = new Button()
+            {
+                Dock = DockStyle.Top,
+                Text = "Confirm Choice"
+            };
+            confirmButton.Click += ConfirmButton_Click;
+
+            nameForm.Controls.Add(confirmButton);
+            nameForm.Controls.Add(changeNameText);
+
+            nameForm.ShowDialog();
+        }
+
+        private void ConfirmButton_Click(object sender, EventArgs e)
+        {
+            Game.Name = changeNameText.Lines[0];
+            lbl_title.Text = Game.Name + " Settings";
+            MessageBox.Show("Name changed!");
         }
     }
 }

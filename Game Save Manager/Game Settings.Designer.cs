@@ -31,17 +31,15 @@
             this.pnl_header = new System.Windows.Forms.Panel();
             this.lbl_musicChoice = new System.Windows.Forms.Label();
             this.img_musicControl = new System.Windows.Forms.PictureBox();
-            this.lbl_title = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pnl_gamesPanelWhole = new System.Windows.Forms.Panel();
-            this.pnl_gamesPanel = new System.Windows.Forms.Panel();
             this.btn_addSave = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_changeName = new System.Windows.Forms.Button();
+            this.pnl_gamesPanel = new System.Windows.Forms.Panel();
             this.lbl_saves = new System.Windows.Forms.Label();
+            this.lbl_title = new System.Windows.Forms.Label();
             this.pnl_header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.img_musicControl)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.pnl_gamesPanelWhole.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_header
@@ -78,85 +76,80 @@
             this.img_musicControl.TabStop = false;
             this.img_musicControl.Click += new System.EventHandler(this.img_musicControl_Click);
             // 
-            // lbl_title
+            // btn_addSave
             // 
-            this.lbl_title.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbl_title.Font = new System.Drawing.Font("OCR A Extended", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_title.Location = new System.Drawing.Point(0, 0);
-            this.lbl_title.Name = "lbl_title";
-            this.lbl_title.Size = new System.Drawing.Size(532, 75);
-            this.lbl_title.TabIndex = 6;
-            this.lbl_title.Text = "Game Settings";
-            this.lbl_title.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.lbl_title);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 50);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(532, 75);
-            this.panel2.TabIndex = 7;
+            this.btn_addSave.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btn_addSave.Location = new System.Drawing.Point(0, 453);
+            this.btn_addSave.Name = "btn_addSave";
+            this.btn_addSave.Size = new System.Drawing.Size(532, 50);
+            this.btn_addSave.TabIndex = 18;
+            this.btn_addSave.Text = "Add Save";
+            this.btn_addSave.UseVisualStyleBackColor = true;
+            this.btn_addSave.Click += new System.EventHandler(this.btn_addSave_Click);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btn_changeName);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 125);
+            this.panel1.Location = new System.Drawing.Point(0, 50);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(532, 50);
-            this.panel1.TabIndex = 8;
+            this.panel1.TabIndex = 19;
             // 
-            // pnl_gamesPanelWhole
+            // btn_changeName
             // 
-            this.pnl_gamesPanelWhole.Controls.Add(this.pnl_gamesPanel);
-            this.pnl_gamesPanelWhole.Controls.Add(this.btn_addSave);
-            this.pnl_gamesPanelWhole.Controls.Add(this.lbl_saves);
-            this.pnl_gamesPanelWhole.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_gamesPanelWhole.Location = new System.Drawing.Point(0, 175);
-            this.pnl_gamesPanelWhole.Name = "pnl_gamesPanelWhole";
-            this.pnl_gamesPanelWhole.Size = new System.Drawing.Size(532, 328);
-            this.pnl_gamesPanelWhole.TabIndex = 9;
+            this.btn_changeName.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btn_changeName.Location = new System.Drawing.Point(200, 25);
+            this.btn_changeName.MaximumSize = new System.Drawing.Size(125, 25);
+            this.btn_changeName.Name = "btn_changeName";
+            this.btn_changeName.Size = new System.Drawing.Size(125, 25);
+            this.btn_changeName.TabIndex = 0;
+            this.btn_changeName.Text = "Change name";
+            this.btn_changeName.UseVisualStyleBackColor = true;
+            this.btn_changeName.Click += new System.EventHandler(this.btn_changeName_Click);
             // 
             // pnl_gamesPanel
             // 
             this.pnl_gamesPanel.AutoScroll = true;
             this.pnl_gamesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_gamesPanel.Location = new System.Drawing.Point(0, 50);
+            this.pnl_gamesPanel.Location = new System.Drawing.Point(0, 200);
             this.pnl_gamesPanel.Name = "pnl_gamesPanel";
             this.pnl_gamesPanel.Padding = new System.Windows.Forms.Padding(5, 0, 0, 5);
-            this.pnl_gamesPanel.Size = new System.Drawing.Size(532, 228);
-            this.pnl_gamesPanel.TabIndex = 2;
-            // 
-            // btn_addSave
-            // 
-            this.btn_addSave.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btn_addSave.Location = new System.Drawing.Point(0, 278);
-            this.btn_addSave.Name = "btn_addSave";
-            this.btn_addSave.Size = new System.Drawing.Size(532, 50);
-            this.btn_addSave.TabIndex = 1;
-            this.btn_addSave.Text = "Add Save";
-            this.btn_addSave.UseVisualStyleBackColor = true;
-            this.btn_addSave.Click += new System.EventHandler(this.btn_addSave_Click);
+            this.pnl_gamesPanel.Size = new System.Drawing.Size(532, 253);
+            this.pnl_gamesPanel.TabIndex = 26;
             // 
             // lbl_saves
             // 
             this.lbl_saves.Dock = System.Windows.Forms.DockStyle.Top;
             this.lbl_saves.Font = new System.Drawing.Font("OCR A Extended", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_saves.Location = new System.Drawing.Point(0, 0);
+            this.lbl_saves.Location = new System.Drawing.Point(0, 150);
             this.lbl_saves.Name = "lbl_saves";
             this.lbl_saves.Size = new System.Drawing.Size(532, 50);
-            this.lbl_saves.TabIndex = 0;
+            this.lbl_saves.TabIndex = 25;
             this.lbl_saves.Text = "Saves";
             this.lbl_saves.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_title
+            // 
+            this.lbl_title.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lbl_title.Font = new System.Drawing.Font("OCR A Extended", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_title.Location = new System.Drawing.Point(0, 100);
+            this.lbl_title.Name = "lbl_title";
+            this.lbl_title.Size = new System.Drawing.Size(532, 50);
+            this.lbl_title.TabIndex = 24;
+            this.lbl_title.Text = "Game Settings";
+            this.lbl_title.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // GameSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 503);
-            this.Controls.Add(this.pnl_gamesPanelWhole);
+            this.Controls.Add(this.pnl_gamesPanel);
+            this.Controls.Add(this.lbl_saves);
+            this.Controls.Add(this.lbl_title);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.btn_addSave);
             this.Controls.Add(this.pnl_header);
             this.Name = "GameSettings";
             this.Text = "Game Save Manager";
@@ -164,8 +157,7 @@
             this.Load += new System.EventHandler(this.GameSettings_Load);
             this.pnl_header.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.img_musicControl)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.pnl_gamesPanelWhole.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -174,13 +166,12 @@
 
         private System.Windows.Forms.Panel pnl_header;
         private System.Windows.Forms.PictureBox img_musicControl;
-        private System.Windows.Forms.Label lbl_title;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel pnl_gamesPanelWhole;
-        private System.Windows.Forms.Label lbl_saves;
-        private System.Windows.Forms.Panel pnl_gamesPanel;
-        private System.Windows.Forms.Button btn_addSave;
         private System.Windows.Forms.Label lbl_musicChoice;
+        private System.Windows.Forms.Button btn_addSave;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btn_changeName;
+        private System.Windows.Forms.Panel pnl_gamesPanel;
+        private System.Windows.Forms.Label lbl_saves;
+        private System.Windows.Forms.Label lbl_title;
     }
 }

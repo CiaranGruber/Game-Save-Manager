@@ -43,7 +43,7 @@ namespace GameSaveManager
             lbl_dateCreated.Text = "Date Created: " + Save.Date.ToString(Save.Culture);
             txt_saveData.Lines = new string[] { Save.SaveData };
             txt_notes.Lines = Save.Notes;
-            lbl_saveNumber.Text = "Save Number: " + SaveIndex.ToString().PadLeft(3, '0');
+            lbl_saveNumber.Text = "Save Number: " + (SaveIndex + 1).ToString().PadLeft(3, '0');
             if (Save.Favourited)
             {
                 img_favourited.Image = Properties.Resources.Favourited;

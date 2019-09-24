@@ -37,7 +37,7 @@
             this.lbl_loading.Font = new System.Drawing.Font("Monotxt_IV25", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_loading.Location = new System.Drawing.Point(0, 0);
             this.lbl_loading.Name = "lbl_loading";
-            this.lbl_loading.Size = new System.Drawing.Size(263, 97);
+            this.lbl_loading.Size = new System.Drawing.Size(300, 100);
             this.lbl_loading.TabIndex = 0;
             this.lbl_loading.Text = "Loading...";
             this.lbl_loading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -46,7 +46,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(263, 97);
+            this.ClientSize = new System.Drawing.Size(300, 100);
             this.Controls.Add(this.lbl_loading);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormNav";

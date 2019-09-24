@@ -73,7 +73,7 @@ namespace ProgramCodes
             {
                 Saves.Add(new Save(save.ToArray()));
             }
-            Saves = Saves.OrderByDescending(x => x.Date).ToList();
+            Saves = Saves.OrderBy(x => x.Date).ToList();
         }
 
         /// <summary>Gets the <c>Game</c> as a string array</summary>
@@ -94,7 +94,7 @@ namespace ProgramCodes
         public void AddSave(Save save)
         {
             Saves.Add(save);
-            Saves = Saves.OrderByDescending(x => x.Date).ToList();
+            Saves = Saves.OrderBy(x => x.Date).ToList();
         }
 
         /// <summary>Adds a <c>Save</c> to the list of saves via parameters</summary>
@@ -114,7 +114,7 @@ namespace ProgramCodes
         public void AddSave(string[] saveArray)
         {
             Saves.Add(new Save(saveArray));
-            Saves = Saves.OrderByDescending(x => x.Date).ToList();
+            Saves = Saves.OrderBy(x => x.Date).ToList();
         }
 
         /// <summary>Edits a <c>Save</c> by replacing specific parameters</summary>

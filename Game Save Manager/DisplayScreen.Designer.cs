@@ -33,7 +33,6 @@
             this.img_musicControl = new System.Windows.Forms.PictureBox();
             this.pnl_title = new System.Windows.Forms.Panel();
             this.lbl_title = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.btn_addGame = new System.Windows.Forms.Button();
@@ -41,30 +40,26 @@
             this.lbl_gameLink = new System.Windows.Forms.Label();
             this.txt_gameName = new System.Windows.Forms.TextBox();
             this.lbl_gameName = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.cBo_gameSelector = new System.Windows.Forms.ComboBox();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.btn_gameSettings = new System.Windows.Forms.Button();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.btn_removeGame = new System.Windows.Forms.Button();
-            this.panel7 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btn_removeGame = new System.Windows.Forms.Button();
             this.cBo_removeGame = new System.Windows.Forms.ComboBox();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.lbl_settingsAndSaves = new System.Windows.Forms.Label();
+            this.cBo_gameSelector = new System.Windows.Forms.ComboBox();
+            this.btn_gameSettings = new System.Windows.Forms.Button();
             this.pnl_header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.img_musicControl)).BeginInit();
             this.pnl_title.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.panel9.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_header
@@ -121,24 +116,14 @@
             this.lbl_title.Text = "Game Save Manager";
             this.lbl_title.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // panel2
-            // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(532, 50);
-            this.panel2.TabIndex = 5;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.panel8);
             this.panel1.Controls.Add(this.panel4);
-            this.panel1.Controls.Add(this.panel5);
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 125);
             this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(100, 50, 100, 0);
             this.panel1.Size = new System.Drawing.Size(532, 250);
             this.panel1.TabIndex = 6;
             // 
@@ -202,79 +187,6 @@
             this.lbl_gameName.Text = "Game Name";
             this.lbl_gameName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel5
-            // 
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(432, 50);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(100, 200);
-            this.panel5.TabIndex = 7;
-            // 
-            // panel3
-            // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 50);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(100, 200);
-            this.panel3.TabIndex = 0;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.cBo_gameSelector);
-            this.panel9.Controls.Add(this.panel12);
-            this.panel9.Controls.Add(this.btn_gameSettings);
-            this.panel9.Controls.Add(this.panel10);
-            this.panel9.Controls.Add(this.panel11);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel9.Location = new System.Drawing.Point(0, 375);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(532, 150);
-            this.panel9.TabIndex = 7;
-            // 
-            // cBo_gameSelector
-            // 
-            this.cBo_gameSelector.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cBo_gameSelector.FormattingEnabled = true;
-            this.cBo_gameSelector.Location = new System.Drawing.Point(100, 50);
-            this.cBo_gameSelector.Name = "cBo_gameSelector";
-            this.cBo_gameSelector.Size = new System.Drawing.Size(332, 24);
-            this.cBo_gameSelector.TabIndex = 5;
-            // 
-            // panel12
-            // 
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel12.Location = new System.Drawing.Point(100, 0);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(332, 50);
-            this.panel12.TabIndex = 1;
-            // 
-            // btn_gameSettings
-            // 
-            this.btn_gameSettings.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btn_gameSettings.Location = new System.Drawing.Point(100, 100);
-            this.btn_gameSettings.Name = "btn_gameSettings";
-            this.btn_gameSettings.Size = new System.Drawing.Size(332, 50);
-            this.btn_gameSettings.TabIndex = 4;
-            this.btn_gameSettings.Text = "Game Settings";
-            this.btn_gameSettings.UseVisualStyleBackColor = true;
-            this.btn_gameSettings.Click += new System.EventHandler(this.btn_gameSettings_Click);
-            // 
-            // panel10
-            // 
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel10.Location = new System.Drawing.Point(432, 0);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(100, 150);
-            this.panel10.TabIndex = 3;
-            // 
-            // panel11
-            // 
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel11.Location = new System.Drawing.Point(0, 0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(100, 150);
-            this.panel11.TabIndex = 2;
-            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.splitContainer1);
@@ -283,25 +195,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(332, 50);
             this.panel4.TabIndex = 8;
-            // 
-            // btn_removeGame
-            // 
-            this.btn_removeGame.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_removeGame.Location = new System.Drawing.Point(0, 0);
-            this.btn_removeGame.Name = "btn_removeGame";
-            this.btn_removeGame.Size = new System.Drawing.Size(163, 50);
-            this.btn_removeGame.TabIndex = 2;
-            this.btn_removeGame.Text = "Remove Game";
-            this.btn_removeGame.UseVisualStyleBackColor = true;
-            this.btn_removeGame.Click += new System.EventHandler(this.btn_removeGame_Click);
-            // 
-            // panel7
-            // 
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(165, 12);
-            this.panel7.TabIndex = 0;
             // 
             // splitContainer1
             // 
@@ -321,6 +214,17 @@
             this.splitContainer1.SplitterDistance = 163;
             this.splitContainer1.TabIndex = 0;
             // 
+            // btn_removeGame
+            // 
+            this.btn_removeGame.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_removeGame.Location = new System.Drawing.Point(0, 0);
+            this.btn_removeGame.Name = "btn_removeGame";
+            this.btn_removeGame.Size = new System.Drawing.Size(163, 50);
+            this.btn_removeGame.TabIndex = 2;
+            this.btn_removeGame.Text = "Remove Game";
+            this.btn_removeGame.UseVisualStyleBackColor = true;
+            this.btn_removeGame.Click += new System.EventHandler(this.btn_removeGame_Click);
+            // 
             // cBo_removeGame
             // 
             this.cBo_removeGame.Dock = System.Windows.Forms.DockStyle.Top;
@@ -329,6 +233,59 @@
             this.cBo_removeGame.Name = "cBo_removeGame";
             this.cBo_removeGame.Size = new System.Drawing.Size(165, 24);
             this.cBo_removeGame.TabIndex = 2;
+            // 
+            // panel7
+            // 
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(165, 12);
+            this.panel7.TabIndex = 0;
+            // 
+            // panel9
+            // 
+            this.panel9.AutoSize = true;
+            this.panel9.Controls.Add(this.btn_gameSettings);
+            this.panel9.Controls.Add(this.cBo_gameSelector);
+            this.panel9.Controls.Add(this.lbl_settingsAndSaves);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel9.Location = new System.Drawing.Point(0, 375);
+            this.panel9.Name = "panel9";
+            this.panel9.Padding = new System.Windows.Forms.Padding(100, 25, 100, 0);
+            this.panel9.Size = new System.Drawing.Size(532, 134);
+            this.panel9.TabIndex = 7;
+            // 
+            // lbl_settingsAndSaves
+            // 
+            this.lbl_settingsAndSaves.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lbl_settingsAndSaves.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_settingsAndSaves.Location = new System.Drawing.Point(100, 25);
+            this.lbl_settingsAndSaves.Name = "lbl_settingsAndSaves";
+            this.lbl_settingsAndSaves.Padding = new System.Windows.Forms.Padding(0, 0, 0, 15);
+            this.lbl_settingsAndSaves.Size = new System.Drawing.Size(332, 35);
+            this.lbl_settingsAndSaves.TabIndex = 6;
+            this.lbl_settingsAndSaves.Text = "Settings and Saves";
+            this.lbl_settingsAndSaves.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cBo_gameSelector
+            // 
+            this.cBo_gameSelector.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cBo_gameSelector.FormattingEnabled = true;
+            this.cBo_gameSelector.Location = new System.Drawing.Point(100, 60);
+            this.cBo_gameSelector.Name = "cBo_gameSelector";
+            this.cBo_gameSelector.Size = new System.Drawing.Size(332, 24);
+            this.cBo_gameSelector.TabIndex = 8;
+            // 
+            // btn_gameSettings
+            // 
+            this.btn_gameSettings.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_gameSettings.Location = new System.Drawing.Point(100, 84);
+            this.btn_gameSettings.Name = "btn_gameSettings";
+            this.btn_gameSettings.Size = new System.Drawing.Size(332, 50);
+            this.btn_gameSettings.TabIndex = 9;
+            this.btn_gameSettings.Text = "Game Settings";
+            this.btn_gameSettings.UseVisualStyleBackColor = true;
+            this.btn_gameSettings.Click += new System.EventHandler(this.btn_gameSettings_Click);
             // 
             // DisplayScreen
             // 
@@ -349,13 +306,14 @@
             this.panel1.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
-            this.panel9.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -364,16 +322,8 @@
         private System.Windows.Forms.PictureBox img_musicControl;
         private System.Windows.Forms.Panel pnl_title;
         private System.Windows.Forms.Label lbl_title;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.ComboBox cBo_gameSelector;
-        private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.Button btn_gameSettings;
-        private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button btn_addGame;
         private System.Windows.Forms.TextBox txt_gameLink;
@@ -386,6 +336,9 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ComboBox cBo_removeGame;
+        private System.Windows.Forms.Button btn_gameSettings;
+        private System.Windows.Forms.ComboBox cBo_gameSelector;
+        private System.Windows.Forms.Label lbl_settingsAndSaves;
     }
 }
 
