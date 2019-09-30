@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameSettings));
             this.pnl_header = new System.Windows.Forms.Panel();
             this.lbl_musicChoice = new System.Windows.Forms.Label();
             this.img_musicControl = new System.Windows.Forms.PictureBox();
@@ -151,6 +152,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btn_addSave);
             this.Controls.Add(this.pnl_header);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GameSettings";
             this.Text = "Game Save Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GameSettings_FormClosing);

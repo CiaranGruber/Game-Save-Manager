@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditSave));
             this.pnl_header = new System.Windows.Forms.Panel();
             this.lbl_musicChoice = new System.Windows.Forms.Label();
             this.img_musicControl = new System.Windows.Forms.PictureBox();
@@ -42,11 +43,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btn_saveToCollection = new System.Windows.Forms.Button();
+            this.panel10 = new System.Windows.Forms.Panel();
             this.btn_quit = new System.Windows.Forms.Button();
             this.img_favourited = new System.Windows.Forms.PictureBox();
             this.txt_saveName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.panel10 = new System.Windows.Forms.Panel();
             this.pnl_header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.img_musicControl)).BeginInit();
             this.pnl_title.SuspendLayout();
@@ -225,6 +226,14 @@
             this.btn_saveToCollection.UseVisualStyleBackColor = true;
             this.btn_saveToCollection.Click += new System.EventHandler(this.btn_saveToCollection_Click);
             // 
+            // panel10
+            // 
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel10.Location = new System.Drawing.Point(50, 10);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(100, 50);
+            this.panel10.TabIndex = 2;
+            // 
             // btn_quit
             // 
             this.btn_quit.Dock = System.Windows.Forms.DockStyle.Right;
@@ -268,14 +277,6 @@
             this.label2.Text = "Save Name";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel10
-            // 
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel10.Location = new System.Drawing.Point(50, 10);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(100, 50);
-            this.panel10.TabIndex = 2;
-            // 
             // EditSave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -284,6 +285,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnl_title);
             this.Controls.Add(this.pnl_header);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EditSave";
             this.Text = "Game Save Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditSave_FormClosing);

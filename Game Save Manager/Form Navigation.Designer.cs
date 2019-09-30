@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNav));
             this.lbl_loading = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -49,6 +50,7 @@
             this.ClientSize = new System.Drawing.Size(300, 100);
             this.Controls.Add(this.lbl_loading);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormNav";
             this.Text = "FormNav";
             this.Load += new System.EventHandler(this.FormNav_Load);

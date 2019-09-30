@@ -137,7 +137,7 @@ namespace UnitTests
         {
             Game newGame = new Game(GameArray);
             newGame.EditSave("02/08/2002 23:12:01", "Save 10", true, "fdkflsjfklasd - Save Data", new string[] { "These are notes" });
-            Assert.IsTrue(newGame.Saves.Find(x => x.Date.ToString(x.Culture) == "02/08/2002 23:12:01").Equals(new Save("Save 10", "02/08/2002 23:12:01", true, "fdkflsjfklasd - Save Data", new string[] { "These are notes" })), "Save was not edited correctly");
+            Assert.IsTrue(newGame.Saves.Find(x => x.Date.ToString(Save.Culture) == "02/08/2002 23:12:01").Equals(new Save("Save 10", "02/08/2002 23:12:01", true, "fdkflsjfklasd - Save Data", new string[] { "These are notes" })), "Save was not edited correctly");
         }
 
         [TestMethod]
@@ -147,7 +147,7 @@ namespace UnitTests
             newGame.RemoveSave("02/08/2002 23:12:01");
             try
             {
-                newGame.Saves.Find(x => x.Date.ToString(x.Culture) == "02/08/2002 23:12:01");
+                newGame.Saves.Find(x => x.Date.ToString(Save.Culture) == "02/08/2002 23:12:01");
                 Assert.Fail("Game did not remove the save");
             }
             catch { }

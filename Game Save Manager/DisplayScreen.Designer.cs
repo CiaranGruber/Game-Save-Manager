@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DisplayScreen));
             this.pnl_header = new System.Windows.Forms.Panel();
             this.lbl_musicChoice = new System.Windows.Forms.Label();
             this.img_musicControl = new System.Windows.Forms.PictureBox();
@@ -46,9 +47,9 @@
             this.cBo_removeGame = new System.Windows.Forms.ComboBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.lbl_settingsAndSaves = new System.Windows.Forms.Label();
-            this.cBo_gameSelector = new System.Windows.Forms.ComboBox();
             this.btn_gameSettings = new System.Windows.Forms.Button();
+            this.cBo_gameSelector = new System.Windows.Forms.ComboBox();
+            this.lbl_settingsAndSaves = new System.Windows.Forms.Label();
             this.pnl_header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.img_musicControl)).BeginInit();
             this.pnl_title.SuspendLayout();
@@ -255,6 +256,26 @@
             this.panel9.Size = new System.Drawing.Size(532, 134);
             this.panel9.TabIndex = 7;
             // 
+            // btn_gameSettings
+            // 
+            this.btn_gameSettings.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_gameSettings.Location = new System.Drawing.Point(100, 84);
+            this.btn_gameSettings.Name = "btn_gameSettings";
+            this.btn_gameSettings.Size = new System.Drawing.Size(332, 50);
+            this.btn_gameSettings.TabIndex = 9;
+            this.btn_gameSettings.Text = "Game Settings";
+            this.btn_gameSettings.UseVisualStyleBackColor = true;
+            this.btn_gameSettings.Click += new System.EventHandler(this.btn_gameSettings_Click);
+            // 
+            // cBo_gameSelector
+            // 
+            this.cBo_gameSelector.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cBo_gameSelector.FormattingEnabled = true;
+            this.cBo_gameSelector.Location = new System.Drawing.Point(100, 60);
+            this.cBo_gameSelector.Name = "cBo_gameSelector";
+            this.cBo_gameSelector.Size = new System.Drawing.Size(332, 24);
+            this.cBo_gameSelector.TabIndex = 8;
+            // 
             // lbl_settingsAndSaves
             // 
             this.lbl_settingsAndSaves.Dock = System.Windows.Forms.DockStyle.Top;
@@ -267,26 +288,6 @@
             this.lbl_settingsAndSaves.Text = "Settings and Saves";
             this.lbl_settingsAndSaves.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // cBo_gameSelector
-            // 
-            this.cBo_gameSelector.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cBo_gameSelector.FormattingEnabled = true;
-            this.cBo_gameSelector.Location = new System.Drawing.Point(100, 60);
-            this.cBo_gameSelector.Name = "cBo_gameSelector";
-            this.cBo_gameSelector.Size = new System.Drawing.Size(332, 24);
-            this.cBo_gameSelector.TabIndex = 8;
-            // 
-            // btn_gameSettings
-            // 
-            this.btn_gameSettings.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_gameSettings.Location = new System.Drawing.Point(100, 84);
-            this.btn_gameSettings.Name = "btn_gameSettings";
-            this.btn_gameSettings.Size = new System.Drawing.Size(332, 50);
-            this.btn_gameSettings.TabIndex = 9;
-            this.btn_gameSettings.Text = "Game Settings";
-            this.btn_gameSettings.UseVisualStyleBackColor = true;
-            this.btn_gameSettings.Click += new System.EventHandler(this.btn_gameSettings_Click);
-            // 
             // DisplayScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -296,6 +297,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnl_title);
             this.Controls.Add(this.pnl_header);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DisplayScreen";
             this.Text = "Game Save Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DisplayScreen_FormClosing);
